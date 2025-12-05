@@ -14,11 +14,13 @@ def is_quiet_hours_utc():
     # Quiet hours in NPT (22:00-07:00). Approx skip in UTC:
     # NPT = UTC+05:45 → quiet hours ≈ 16:15–01:15 UTC.
     # We’ll skip hours 16..23 and 0..1 for safety.
-    utc_hour = datetime.datetime.utcnow().hour
+    utc_hour = datetime.datetime.now(datetime.UTC).hour
     return utc_hour in list(range(16, 24)) + [0, 1]
 
 def main():
-    if is_quiet_hours_utc():
+    if os.getenv("FORCE_RUN") == "1":
+        pass
+    elif is_quiet_hours_utc():
         print("Quiet hours; skipping alerts.")
         return
 
