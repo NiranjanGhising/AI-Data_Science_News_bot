@@ -1,3 +1,11 @@
+import os
+import sys
+
+# Ensure repository root is on sys.path so `src` package is importable
+CURRENT_DIR = os.path.dirname(__file__)
+REPO_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, os.pardir))
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
 
 from src.ingest_feeds import pull_company_posts
 from src.ingest_arxiv import pull_arxiv
