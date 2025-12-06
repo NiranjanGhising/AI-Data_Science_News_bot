@@ -9,6 +9,7 @@ if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 from src.ingest_feeds import pull_company_posts
 from src.deliver_telegram import send_digest_telegram
+from src.utils import load_sent_ids, save_sent_ids
 
 def is_quiet_hours_utc():
     # Quiet hours in NPT (22:00-07:00). Approx skip in UTC:
@@ -28,11 +29,25 @@ def main():
     big = [p for p in posts if any(k in p["title"].lower()
             for k in ["introducing","announcing","release","model","api",
                       "sdk","agent","workflow","preview","launch","update"])]
-    if big:
+
+    sent_ids = load_sent_ids()
+    fresh = []
+    for p in big:
+        k = p.get("url")
+        if not k or k in sent_ids:
+            continue
+        fresh.append(p)
+
+    if fresh:
         # send up to 3 items in one alert
-        for i in big[:3]:
+        for i in fresh[:3]:
             i["key_findings"] = "- Major release/preview\n- Likely high visibility\n- See link for details"
-        send_digest_telegram(big[:3], bullets=3)
+        send_digest_telegram(fresh[:3], bullets=3)
+        for i in fresh:
+            k = i.get("url")
+            if k:
+                sent_ids.add(k)
+        save_sent_ids(sent_ids)
 
 if __name__ == "__main__":
     main()

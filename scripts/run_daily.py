@@ -13,7 +13,7 @@ from src.ingest_semanticscholar import pull_s2
 from src.ingest_crossref import pull_crossref
 from src.ingest_pwc import pull_paperswithcode
 from src.deliver_telegram import send_digest_telegram
-from src.utils import boost_score_by_keywords, safe_get
+from src.utils import boost_score_by_keywords, safe_get, load_sent_ids, save_sent_ids
 
 TOP_SOURCES = {"Google AI Blog","DeepMind","OpenAI News","Microsoft Research","Meta Engineering"}
 
@@ -45,10 +45,24 @@ def main():
 
     ranked = sorted(uniq.values(), key=score, reverse=True)
 
-    for i in ranked[:10]:
+    sent_ids = load_sent_ids()
+    fresh = []
+    for i in ranked:
+        k = i.get("url") or i.get("arxiv_id") or i.get("DOI")
+        if not k or k in sent_ids:
+            continue
+        fresh.append(i)
+
+    for i in fresh[:10]:
         i["key_findings"] = "- New/updated tool or concept\n- Practical relevance\n- See link for details"
 
-    send_digest_telegram(ranked, bullets=7)
+    if fresh:
+        send_digest_telegram(fresh, bullets=7)
+        for i in fresh:
+            k = i.get("url") or i.get("arxiv_id") or i.get("DOI")
+            if k:
+                sent_ids.add(k)
+        save_sent_ids(sent_ids)
 
 if __name__ == "__main__":
     main()
