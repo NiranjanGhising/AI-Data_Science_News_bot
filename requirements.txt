@@ -1,3 +1,9 @@
 
 feedparser
 requests
+PyYAML
+jellyfish
+beautifulsoup4
+lxml
+icalendar
+python-dateutil

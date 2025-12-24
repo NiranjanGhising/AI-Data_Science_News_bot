@@ -35,7 +35,7 @@ Get **daily digests** and **priority alerts** in your Telegram group about the l
 https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates
 
 3. Find `"chat": {"id": ...}` in the JSON.  
-Example: `-1001234567890` (keep the minus sign).
+Example: `-1001234567789` (keep the minus sign).
 
 ---
 

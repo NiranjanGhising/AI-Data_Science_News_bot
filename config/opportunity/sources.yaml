@@ -1,0 +1,85 @@
+# Opportunity Radar sources
+# parser: rss | atom | ics | json | html
+# rateLimitSeconds: minimum seconds between requests per source
+# tags: used for reputation & classification hints
+
+sources:
+  - id: google-open-source-blog
+    name: Google Open Source Blog
+    url: https://opensource.googleblog.com/feeds/posts/default?alt=rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [google, open_source, program]
+
+  - id: gsoc-updates
+    name: Google Summer of Code (Updates)
+    url: https://summerofcode.withgoogle.com/updates/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [google, gsoc, program, students]
+
+  - id: outreachy-blog
+    name: Outreachy Blog
+    url: https://www.outreachy.org/blog/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [outreachy, internship, students]
+
+  - id: mlh-blog
+    name: Major League Hacking (MLH) Blog
+    url: https://mlh.io/feed
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [mlh, fellowship, program, students]
+
+  - id: github-education-blog
+    name: GitHub Education (GitHub Blog)
+    url: https://github.blog/category/education/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [github, education, students, scholarship]
+
+  - id: aws-training-blog
+    name: AWS Training and Certification Blog
+    url: https://aws.amazon.com/blogs/training-and-certification/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [aws, course, certification, challenge]
+
+  - id: microsoft-learn-blog
+    name: Microsoft Learn Blog
+    url: https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog/rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [microsoft, challenge, course]
+
+  - id: cloudflare-blog
+    name: Cloudflare Blog
+    url: https://blog.cloudflare.com/rss/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [cloudflare, internship, program, security]
+
+  - id: nvidia-developer-blog
+    name: NVIDIA Developer Blog
+    url: https://developer.nvidia.com/blog/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [nvidia, course, certification, program]
+
+  - id: oracle-blog
+    name: Oracle Blog
+    url: https://blogs.oracle.com/rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [oracle, certification, course]

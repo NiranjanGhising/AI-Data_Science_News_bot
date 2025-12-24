@@ -1,0 +1,17 @@
+# Scoring for Opportunity Radar
+
+weights:
+  company_reputation: 0.30
+  skill_relevance: 0.25
+  benefit_value: 0.25
+  timeliness: 0.15
+  rarity: 0.05
+
+thresholds:
+  urgent_threshold_days: 7
+  dedup_window_days: 60
+  fuzzy_jaro_winkler_threshold: 0.88
+
+limits:
+  daily_max_items: 8
+  priority_max_items: 3

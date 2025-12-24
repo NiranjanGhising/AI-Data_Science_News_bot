@@ -1,5 +1,6 @@
 import os
 import sys
+import datetime
 
 # Ensure repository root is on sys.path so `src` package is importable
 CURRENT_DIR = os.path.dirname(__file__)
@@ -12,14 +13,49 @@ from src.ingest_arxiv import pull_arxiv
 from src.ingest_semanticscholar import pull_s2
 from src.ingest_crossref import pull_crossref
 from src.ingest_pwc import pull_paperswithcode
-from src.deliver_telegram import send_digest_telegram
-from src.utils import boost_score_by_keywords, safe_get, load_sent_ids, save_sent_ids
+from src.deliver_telegram import send_combined_daily_digest
+from src.utils import boost_score_by_keywords
+from src.news_store import NewsStore, canonicalize_url
 
-TOP_SOURCES = {"Google AI Blog","DeepMind","OpenAI News","Microsoft Research","Meta Engineering"}
+from src.opportunity.config_loader import load_scoring
+from src.opportunity.pipeline import run_opportunity_pipeline, select_daily_items
+from src.opportunity.storage import OpportunityStore
+
+TOP_SOURCES = {
+    "Google AI Blog",
+    "DeepMind",
+    "OpenAI News",
+    "Microsoft Research",
+    "Meta Engineering",
+    "Anthropic News",
+    "NVIDIA Developer Blog",
+    "AWS Machine Learning Blog",
+    "Apple Machine Learning Research",
+    "Hugging Face Blog",
+    "Mistral AI",
+    "Cohere",
+    "Databricks Blog",
+    "Snowflake Blog",
+    "GitHub Blog (AI)",
+    "OpenAI Python SDK Releases",
+    "OpenAI Node SDK Releases",
+    "Transformers Releases",
+    "Diffusers Releases",
+    "LangChain Releases",
+    "Ollama Releases",
+    "vLLM Releases",
+}
 
 KEYWORDS = [
     "sdk","api","library","tool","agent","workflow","rag",
-    "web dev","web development","app dev","application","developer","data engineering"
+    "web dev","web development","app dev","application","developer","data engineering",
+    # Model/documentation signals
+    "release notes","changelog","migration","breaking change","version",
+    "benchmark","eval","leaderboard",
+    # Coding model signals
+    "code","coding","swe-bench","repo","pull request","ide","copilot",
+    # Image model signals
+    "image","text-to-image","diffusion","photo","photoreal","flux","sdxl","stable diffusion"
 ]
 
 def score(item):
@@ -27,7 +63,20 @@ def score(item):
     if item.get("source") in TOP_SOURCES: s += 3
     s += boost_score_by_keywords(item, KEYWORDS)
     if item.get("code_url"): s += 2
+    title = (item.get("title") or "").lower()
+    if any(k in title for k in ["release", "releases", "changelog", "release notes", "docs", "documentation"]):
+        s += 1
     return s
+
+
+def is_important(item) -> bool:
+    title = (item.get("title") or "").lower()
+    s = score(item)
+    if item.get("source") in TOP_SOURCES and any(k in title for k in [
+        "introducing", "announcing", "release", "launch", "preview", "update", "api", "sdk", "model"
+    ]):
+        return True
+    return s >= 6
 
 def main():
     items = []
@@ -45,24 +94,58 @@ def main():
 
     ranked = sorted(uniq.values(), key=score, reverse=True)
 
-    sent_ids = load_sent_ids()
-    fresh = []
+    # Persist AI send-state in SQLite to avoid repeats.
+    ai_db_path = os.path.join(REPO_ROOT, "data", "news_radar.db")
+    ai_store = NewsStore(ai_db_path)
+    ai_store.init()
+
     for i in ranked:
-        k = i.get("url") or i.get("arxiv_id") or i.get("DOI")
-        if not k or k in sent_ids:
+        key = NewsStore.make_item_key(i)
+        if not key:
             continue
-        fresh.append(i)
+        url = i.get("url") or i.get("URL") or ""
+        canon = canonicalize_url(url)
+        ai_store.upsert(
+            item_key=key,
+            canonical_url=canon,
+            title=str(i.get("title") or "").strip(),
+            source=str(i.get("source") or "").strip(),
+            url=str(url).strip(),
+            published_at=str(i.get("date") or i.get("published") or "").strip() or None,
+            score=int(score(i)),
+            important=bool(is_important(i)),
+        )
 
-    for i in fresh[:10]:
-        i["key_findings"] = "- New/updated tool or concept\n- Practical relevance\n- See link for details"
+    # Select up to 8 AI items, allowing important repeats up to 3 total.
+    selected_rows = ai_store.select_to_send(limit=8, max_important_reposts=3, min_repost_interval_hours=20)
+    ai_top = [{"title": r["title"], "url": r["url"], "item_key": r["item_key"]} for r in selected_rows]
 
-    if fresh:
-        send_digest_telegram(fresh, bullets=7)
-        for i in fresh:
-            k = i.get("url") or i.get("arxiv_id") or i.get("DOI")
-            if k:
-                sent_ids.add(k)
-        save_sent_ids(sent_ids)
+    # Opportunity Radar (SQLite-backed) for dedup + notified state
+    db_path = os.path.join(REPO_ROOT, "data", "opportunity_radar.db")
+    store = OpportunityStore(db_path)
+    scoring_cfg = load_scoring()
+    opp_candidates = run_opportunity_pipeline(store=store)
+    opp_daily = select_daily_items(opp_candidates, scoring_cfg)
+
+    opp_top = []
+    for i in opp_daily:
+        opp_top.append(i.__dict__)
+
+    if ai_top or opp_top:
+        date_label = datetime.datetime.now().strftime("%Y-%m-%d")
+        send_combined_daily_digest(
+            date_label=date_label,
+            ai_items=[{"title": x["title"], "url": x["url"]} for x in ai_top],
+            opp_items=opp_top,
+        )
+
+    # Mark AI items as notified (SQLite)
+    if ai_top:
+        ai_store.mark_notified([x["item_key"] for x in ai_top if x.get("item_key")])
+
+    # Mark opportunities as notified (SQLite)
+    if opp_daily:
+        store.mark_notified([i.canonical_url for i in opp_daily if i.canonical_url])
 
 if __name__ == "__main__":
     main()

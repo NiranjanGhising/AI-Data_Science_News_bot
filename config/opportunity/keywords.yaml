@@ -1,0 +1,105 @@
+# Keywords & rules for Opportunity Radar
+
+urgency_keywords:
+  - deadline
+  - last chance
+  - registration closes
+  - registration close
+  - applications close
+  - applications closing
+  - apply by
+  - due by
+  - ends on
+  - closing soon
+  - final day
+
+limited_time_keywords:
+  - free
+  - voucher
+  - limited
+  - limited time
+  - limited-time
+  - promo
+  - promo code
+  - discount
+  - early bird
+  - seats are limited
+  - first come
+  - while supplies last
+
+negative_keywords:
+  - recap
+  - podcast
+  - webinar recording
+  - replay
+
+category_keywords:
+  program:
+    - program
+    - fellowship
+    - summer of code
+    - gsoc
+    - outreachy
+    - mentorship
+  internship:
+    - internship
+    - intern
+    - student program
+  course:
+    - course
+    - training
+    - learning path
+    - workshop
+    - bootcamp
+  certification:
+    - certification
+    - certified
+    - exam
+    - badge
+    - voucher
+  challenge:
+    - challenge
+    - arcade
+    - quest
+    - hackathon
+    - competition
+  scholarship:
+    - scholarship
+    - grant
+    - stipend
+    - tuition
+  conference:
+    - conference
+    - summit
+    - event
+    - call for proposals
+    - cfp
+
+skill_keywords:
+  - cloud
+  - devops
+  - kubernetes
+  - security
+  - data engineering
+  - machine learning
+  - ai
+  - backend
+  - software engineering
+  - open source
+
+recurrence:
+  gsoc:
+    triggers:
+      - schedule announced
+      - timeline announced
+      - applications open
+      - applications opening
+      - mentoring organizations
+      - contributor guidance
+    prep_checklist:
+      - shortlist orgs
+      - read contribution guides
+      - submit 2+ PRs
+      - draft proposal & get mentor feedback
+      - set mentorship calls
+      - join chats/mailing lists

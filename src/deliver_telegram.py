@@ -1,19 +1,126 @@
-
 import os
 import requests
 
-def send_digest_telegram(items, bullets=6):
+
+def _escape_md(text: str) -> str:
+    # Telegram Markdown (legacy) is finicky; do a small, safe subset.
+    # We avoid fancy formatting and mainly escape '*' and '_' which are common.
+    if text is None:
+        return ""
+    return (
+        str(text)
+        .replace("\\", "\\\\")
+        .replace("*", "\\*")
+        .replace("_", "\\_")
+        .replace("[", "\\[")
+        .replace("]", "\\]")
+        .strip()
+    )
+
+
+def send_message_telegram(text: str, *, parse_mode: str = "Markdown") -> None:
     token = os.getenv("TG_TOKEN")
     chat_id = os.getenv("TG_CHAT_ID")
+    if not token or not chat_id:
+        raise RuntimeError("Missing TG_TOKEN or TG_CHAT_ID")
+    requests.post(
+        f"https://api.telegram.org/bot{token}/sendMessage",
+        data={"chat_id": chat_id, "text": text, "parse_mode": parse_mode},
+        timeout=30,
+    )
+
+def send_digest_telegram(items, bullets=6):
     top = items[:bullets]
     text = "\n\n".join([
-        f"• *{i['title']}*\n_{i.get('source','')} — {i.get('date','')}_\n"
-        f"{ i.get('key_findings','(see link)') }\n{ i['url'] }"
+        f"• *{_escape_md(i['title'])}*\n_{_escape_md(i.get('source',''))} — {_escape_md(i.get('date',''))}_\n"
+        f"{ _escape_md(i.get('key_findings','(see link)')) }\n{ _escape_md(i['url']) }"
         for i in top
     ])
 
-    requests.post(f"https://api.telegram.org/bot{token}/sendMessage",
-                  data={"chat_id": chat_id, "text": text, "parse_mode":"Markdown"})
+    send_message_telegram(text, parse_mode="Markdown")
+
+
+def _format_opportunity_deadline(deadline_at) -> str:
+    if not deadline_at:
+        return ""
+    try:
+        # Deadline is stored UTC; show as YYYY-MM-DD for simplicity.
+        return deadline_at.date().isoformat()
+    except Exception:
+        return ""
+
+
+def format_opportunity_bullet(item) -> str:
+    # Expected keys: title, category, deadline_at, source, content_url, urgent, limited_time
+    title = _escape_md(item.get("title", ""))
+    category = _escape_md(item.get("category", "program"))
+    source = _escape_md(item.get("source", ""))
+    url = _escape_md(item.get("content_url") or item.get("url") or "")
+    deadline = _escape_md(_format_opportunity_deadline(item.get("deadline_at")))
+
+    markers = []
+    if item.get("urgent"):
+        markers.append("🔥")
+    if item.get("limited_time"):
+        markers.append("⏳")
+
+    prefix = " ".join(markers) + " " if markers else "⚡ "
+    parts = [f"{prefix}{title}", f"{category}"]
+    if deadline:
+        parts.append(f"deadline {deadline}")
+    if source:
+        parts.append(source)
+    line = " — ".join(parts)
+    return f"• {line}\n{url}".strip()
+
+
+def send_combined_daily_digest(*, date_label: str, ai_items: list[dict], opp_items: list[dict]) -> None:
+    text = build_combined_daily_text(date_label=date_label, ai_items=ai_items, opp_items=opp_items)
+    send_message_telegram(text, parse_mode="Markdown")
+
+
+def build_combined_daily_text(*, date_label: str, ai_items: list[dict], opp_items: list[dict]) -> str:
+    lines = [f"Daily Digest — {_escape_md(date_label)}", "", "🧠 AI / Research"]
+    if ai_items:
+        for it in ai_items:
+            lines.append(f"• {_escape_md(it.get('title',''))}\n{_escape_md(it.get('url',''))}")
+    else:
+        lines.append("• (no new items)")
+
+    lines += ["", "🎓 Opportunities"]
+    if opp_items:
+        for it in opp_items:
+            lines.append(format_opportunity_bullet(it))
+            if it.get("prep_checklist"):
+                chk = ", ".join(str(x) for x in list(it.get("prep_checklist"))[:3])
+                lines.append(f"  Prep: {_escape_md(chk)}")
+    else:
+        lines.append("• (no new items)")
+    return "\n".join(lines)
+
+
+def send_combined_priority_alert(*, ai_items: list[dict], opp_items: list[dict]) -> None:
+    text = build_combined_priority_text(ai_items=ai_items, opp_items=opp_items)
+    if not text.strip():
+        return
+    send_message_telegram(text, parse_mode="Markdown")
+
+
+def build_combined_priority_text(*, ai_items: list[dict], opp_items: list[dict]) -> str:
+    lines = ["🚨 Priority Alerts", ""]
+    if ai_items:
+        lines.append("🧠 AI / Research")
+        for it in ai_items:
+            lines.append(f"• {_escape_md(it.get('title',''))}\n{_escape_md(it.get('url',''))}")
+        lines.append("")
+
+    if opp_items:
+        lines.append("🎓 Opportunities (urgent)")
+        for it in opp_items:
+            lines.append(format_opportunity_bullet(it))
+
+    # If nothing beyond header.
+    return "\n".join(lines).strip() if (ai_items or opp_items) else ""
 
 def send_photo_telegram(caption, photo_url):
     token = os.getenv("TG_TOKEN")
