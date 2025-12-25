@@ -19,3 +19,24 @@
 {"event": "fetch_start", "source_id": "oracle-blog", "parser": "rss", "url": "https://blogs.oracle.com/rss", "ts": "2025-12-24T10:39:08.938220+00:00", "level": "INFO"}
 {"event": "fetch_done", "source_id": "oracle-blog", "count": 0, "ts": "2025-12-24T10:39:16.550142+00:00", "level": "INFO"}
 {"event": "pipeline_done", "sources": 10, "raw": 121, "deduped": 75, "fresh": 75, "ts": "2025-12-24T10:39:16.996680+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "google-open-source-blog", "parser": "rss", "url": "https://opensource.googleblog.com/feeds/posts/default?alt=rss", "ts": "2025-12-25T05:36:23.146945+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "google-open-source-blog", "count": 0, "ts": "2025-12-25T05:36:25.996552+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "gsoc-updates", "parser": "rss", "url": "https://summerofcode.withgoogle.com/updates/feed/", "ts": "2025-12-25T05:36:25.996552+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "gsoc-updates", "count": 0, "ts": "2025-12-25T05:36:26.445308+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "outreachy-blog", "parser": "rss", "url": "https://www.outreachy.org/blog/feed/", "ts": "2025-12-25T05:36:26.445308+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "outreachy-blog", "count": 41, "ts": "2025-12-25T05:36:27.619142+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "mlh-blog", "parser": "rss", "url": "https://mlh.io/feed", "ts": "2025-12-25T05:36:27.619142+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "mlh-blog", "count": 0, "ts": "2025-12-25T05:36:29.015055+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "github-education-blog", "parser": "rss", "url": "https://github.blog/category/education/feed/", "ts": "2025-12-25T05:36:29.015055+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "github-education-blog", "count": 0, "ts": "2025-12-25T05:36:30.403607+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "aws-training-blog", "parser": "rss", "url": "https://aws.amazon.com/blogs/training-and-certification/feed/", "ts": "2025-12-25T05:36:30.403607+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "aws-training-blog", "count": 10, "ts": "2025-12-25T05:36:31.098042+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "microsoft-learn-blog", "parser": "rss", "url": "https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog/rss", "ts": "2025-12-25T05:36:31.098042+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "microsoft-learn-blog", "count": 0, "ts": "2025-12-25T05:36:34.678621+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "cloudflare-blog", "parser": "rss", "url": "https://blog.cloudflare.com/rss/", "ts": "2025-12-25T05:36:34.678621+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "cloudflare-blog", "count": 20, "ts": "2025-12-25T05:36:35.657611+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "nvidia-developer-blog", "parser": "rss", "url": "https://developer.nvidia.com/blog/feed/", "ts": "2025-12-25T05:36:35.657611+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "nvidia-developer-blog", "count": 50, "ts": "2025-12-25T05:36:36.250815+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "oracle-blog", "parser": "rss", "url": "https://blogs.oracle.com/rss", "ts": "2025-12-25T05:36:36.250815+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "oracle-blog", "count": 0, "ts": "2025-12-25T05:36:36.430134+00:00", "level": "INFO"}
+{"event": "pipeline_done", "sources": 10, "raw": 121, "deduped": 75, "fresh": 75, "ts": "2025-12-25T05:36:36.859593+00:00", "level": "INFO"}

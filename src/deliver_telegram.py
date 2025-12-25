@@ -23,11 +23,26 @@ def send_message_telegram(text: str, *, parse_mode: str = "Markdown") -> None:
     chat_id = os.getenv("TG_CHAT_ID")
     if not token or not chat_id:
         raise RuntimeError("Missing TG_TOKEN or TG_CHAT_ID")
-    requests.post(
+
+    # Allow disabling Markdown entirely if Telegram rejects formatting.
+    # Useful for debugging and for edge-case titles/URLs that break Markdown.
+    if os.getenv("TG_DISABLE_MARKDOWN") == "1":
+        parse_mode = ""
+
+    payload = {"chat_id": chat_id, "text": text}
+    if parse_mode:
+        payload["parse_mode"] = parse_mode
+
+    resp = requests.post(
         f"https://api.telegram.org/bot{token}/sendMessage",
-        data={"chat_id": chat_id, "text": text, "parse_mode": parse_mode},
+        data=payload,
         timeout=30,
     )
+    if not resp.ok:
+        body = (resp.text or "").strip()
+        if len(body) > 1200:
+            body = body[:1200] + "..."
+        raise RuntimeError(f"Telegram sendMessage failed: HTTP {resp.status_code}: {body}")
 
 def send_digest_telegram(items, bullets=6):
     top = items[:bullets]
@@ -125,6 +140,25 @@ def build_combined_priority_text(*, ai_items: list[dict], opp_items: list[dict])
 def send_photo_telegram(caption, photo_url):
     token = os.getenv("TG_TOKEN")
     chat_id = os.getenv("TG_CHAT_ID")
-    requests.post(f"https://api.telegram.org/bot{token}/sendPhoto",
-                  data={"chat_id": chat_id, "caption": caption,
-                        "photo": photo_url, "parse_mode":"Markdown"})
+
+    if not token or not chat_id:
+        raise RuntimeError("Missing TG_TOKEN or TG_CHAT_ID")
+
+    parse_mode = "Markdown"
+    if os.getenv("TG_DISABLE_MARKDOWN") == "1":
+        parse_mode = ""
+
+    payload = {"chat_id": chat_id, "caption": caption, "photo": photo_url}
+    if parse_mode:
+        payload["parse_mode"] = parse_mode
+
+    resp = requests.post(
+        f"https://api.telegram.org/bot{token}/sendPhoto",
+        data=payload,
+        timeout=30,
+    )
+    if not resp.ok:
+        body = (resp.text or "").strip()
+        if len(body) > 1200:
+            body = body[:1200] + "..."
+        raise RuntimeError(f"Telegram sendPhoto failed: HTTP {resp.status_code}: {body}")
