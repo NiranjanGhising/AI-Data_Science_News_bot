@@ -10,6 +10,7 @@ if REPO_ROOT not in sys.path:
 from src.ingest_feeds import pull_company_posts
 from src.deliver_telegram import send_combined_priority_alert
 from src.news_store import NewsStore, canonicalize_url
+from src.utils import _to_text
 
 from src.opportunity.config_loader import load_scoring
 from src.opportunity.pipeline import run_opportunity_pipeline, select_priority_items
@@ -52,7 +53,7 @@ def main():
         for p in posts
         if (p.get("source") in PRIORITY_SOURCES)
         and any(
-            k in p["title"].lower()
+            k in _to_text(p.get("title")).lower()
             for k in [
                 "introducing",
                 "announcing",
@@ -84,7 +85,7 @@ def main():
         ai_store.upsert(
             item_key=key,
             canonical_url=canonicalize_url(url),
-            title=str(p.get("title") or "").strip(),
+            title=_to_text(p.get("title")).strip(),
             source=str(p.get("source") or "").strip(),
             url=str(url).strip(),
             published_at=str(p.get("date") or p.get("published") or "").strip() or None,

@@ -14,7 +14,7 @@ from src.ingest_semanticscholar import pull_s2
 from src.ingest_crossref import pull_crossref
 from src.ingest_pwc import pull_paperswithcode
 from src.deliver_telegram import send_combined_daily_digest
-from src.utils import boost_score_by_keywords
+from src.utils import boost_score_by_keywords, _to_text
 from src.news_store import NewsStore, canonicalize_url
 
 from src.opportunity.config_loader import load_scoring
@@ -63,14 +63,14 @@ def score(item):
     if item.get("source") in TOP_SOURCES: s += 3
     s += boost_score_by_keywords(item, KEYWORDS)
     if item.get("code_url"): s += 2
-    title = (item.get("title") or "").lower()
+    title = _to_text(item.get("title")).lower()
     if any(k in title for k in ["release", "releases", "changelog", "release notes", "docs", "documentation"]):
         s += 1
     return s
 
 
 def is_important(item) -> bool:
-    title = (item.get("title") or "").lower()
+    title = _to_text(item.get("title")).lower()
     s = score(item)
     if item.get("source") in TOP_SOURCES and any(k in title for k in [
         "introducing", "announcing", "release", "launch", "preview", "update", "api", "sdk", "model"
@@ -108,7 +108,7 @@ def main():
         ai_store.upsert(
             item_key=key,
             canonical_url=canon,
-            title=str(i.get("title") or "").strip(),
+            title=_to_text(i.get("title")).strip(),
             source=str(i.get("source") or "").strip(),
             url=str(url).strip(),
             published_at=str(i.get("date") or i.get("published") or "").strip() or None,
