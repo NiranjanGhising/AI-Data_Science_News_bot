@@ -98,7 +98,19 @@ def build_combined_daily_text(*, date_label: str, ai_items: list[dict], opp_item
     lines = [f"Daily Digest — {_escape_md(date_label)}", "", "🧠 AI / Research"]
     if ai_items:
         for it in ai_items:
-            lines.append(f"• {_escape_md(it.get('title',''))}\n{_escape_md(it.get('url',''))}")
+            title = _escape_md(it.get("title", ""))
+            url = _escape_md(it.get("url", ""))
+            summary = _escape_md(it.get("summary", ""))
+            why_read = _escape_md(it.get("why_read", ""))
+
+            block = [f"• {title}"]
+            if summary:
+                block.append(f"Summary: {summary}")
+            if why_read:
+                block.append(f"Why read: {why_read}")
+            if url:
+                block.append(url)
+            lines.append("\n".join(block))
     else:
         lines.append("• (no new items)")
 
@@ -126,7 +138,19 @@ def build_combined_priority_text(*, ai_items: list[dict], opp_items: list[dict])
     if ai_items:
         lines.append("🧠 AI / Research")
         for it in ai_items:
-            lines.append(f"• {_escape_md(it.get('title',''))}\n{_escape_md(it.get('url',''))}")
+            title = _escape_md(it.get("title", ""))
+            url = _escape_md(it.get("url", ""))
+            summary = _escape_md(it.get("summary", ""))
+            why_read = _escape_md(it.get("why_read", ""))
+
+            block = [f"• {title}"]
+            if summary:
+                block.append(f"Summary: {summary}")
+            if why_read:
+                block.append(f"Why read: {why_read}")
+            if url:
+                block.append(url)
+            lines.append("\n".join(block))
         lines.append("")
 
     if opp_items:

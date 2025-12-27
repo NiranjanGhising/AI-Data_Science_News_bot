@@ -73,10 +73,22 @@ class NewsStore:
                     first_seen_at TEXT,
                     last_seen_at TEXT,
                     notify_count INTEGER,
-                    last_notified_at TEXT
+                    last_notified_at TEXT,
+                    link_summary TEXT,
+                    why_read TEXT,
+                    summary_fetched_at TEXT
                 )
                 """
             )
+
+            # Backwards-compatible schema upgrades for existing DBs.
+            cols = {r[1] for r in conn.execute("PRAGMA table_info(ai_items)").fetchall()}
+            if "link_summary" not in cols:
+                conn.execute("ALTER TABLE ai_items ADD COLUMN link_summary TEXT")
+            if "why_read" not in cols:
+                conn.execute("ALTER TABLE ai_items ADD COLUMN why_read TEXT")
+            if "summary_fetched_at" not in cols:
+                conn.execute("ALTER TABLE ai_items ADD COLUMN summary_fetched_at TEXT")
 
     @staticmethod
     def make_item_key(item: dict) -> str:
@@ -184,3 +196,29 @@ class NewsStore:
                     """,
                     (_now_iso(), k),
                 )
+
+    def get_summary(self, *, item_key: str) -> tuple[str, str, Optional[str]]:
+        """Returns (summary, why_read, fetched_at_iso)."""
+        if not item_key:
+            return "", "", None
+        with self._conn() as conn:
+            row = conn.execute(
+                "SELECT link_summary, why_read, summary_fetched_at FROM ai_items WHERE item_key = ?",
+                (item_key,),
+            ).fetchone()
+        if not row:
+            return "", "", None
+        return (row["link_summary"] or ""), (row["why_read"] or ""), (row["summary_fetched_at"] or None)
+
+    def upsert_summary(self, *, item_key: str, link_summary: str, why_read: str, fetched_at_iso: Optional[str]) -> None:
+        if not item_key:
+            return
+        with self._conn() as conn:
+            conn.execute(
+                """
+                UPDATE ai_items
+                SET link_summary = ?, why_read = ?, summary_fetched_at = ?
+                WHERE item_key = ?
+                """,
+                (link_summary or "", why_read or "", fetched_at_iso or _now_iso(), item_key),
+            )

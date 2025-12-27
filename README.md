@@ -11,6 +11,7 @@ Get **daily digests** and **priority alerts** in your Telegram group about the l
 
 ## ✨ Features
 - **Telegram-only delivery**: short bullets + link + key findings.
+- **Link summaries** (new): each AI item can include a 1–2 sentence summary from the link + a short “Why read” note.
 - **High-signal sources**:
   - Company blogs: Google AI, DeepMind, OpenAI, Microsoft Research, Meta.
   - Research feeds: arXiv (cs.LG, cs.CL, stat.ML), Semantic Scholar, Crossref, Papers With Code.
@@ -64,6 +65,17 @@ Example: `-1001234567789` (keep the minus sign).
 - Tune ranking keywords: `scripts/run_daily.py`.
 - Change bullet count: `src/deliver_telegram.py`.
 - Adjust quiet hours: `scripts/run_priority.py`.
+
+### Link summaries (summary + “Why read”)
+By default the daily digest / priority alerts will fetch each AI item’s URL and try to extract a short summary plus a short “Why read” signal.
+
+Environment variables:
+- `RR_SUMMARIZE_LINKS` (default `1`): set to `0` to disable fetching/summarizing links.
+- `RR_USER_AGENT` (optional): override the HTTP User-Agent used to fetch pages.
+
+Notes:
+- Results are cached in `data/news_radar.db` (in the `ai_items` table) so the same link is not re-fetched every run.
+- If Telegram formatting ever fails for a specific link/title, set `TG_DISABLE_MARKDOWN=1`.
 
 ---
 

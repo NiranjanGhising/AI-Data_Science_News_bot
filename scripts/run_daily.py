@@ -16,6 +16,7 @@ from src.ingest_pwc import pull_paperswithcode
 from src.deliver_telegram import send_combined_daily_digest
 from src.utils import boost_score_by_keywords, _to_text
 from src.news_store import NewsStore, canonicalize_url
+from src.link_summarizer import summarize_link
 
 from src.opportunity.config_loader import load_scoring
 from src.opportunity.pipeline import run_opportunity_pipeline, select_daily_items
@@ -118,7 +119,40 @@ def main():
 
     # Select up to 8 AI items, allowing important repeats up to 3 total.
     selected_rows = ai_store.select_to_send(limit=8, max_important_reposts=3, min_repost_interval_hours=20)
-    ai_top = [{"title": r["title"], "url": r["url"], "item_key": r["item_key"]} for r in selected_rows]
+    # Enrich with short summary + "why read" (cached in SQLite)
+    ai_top = []
+    for r in selected_rows:
+        item_key = r["item_key"]
+        title = r["title"]
+        url = r["url"]
+        source = r["source"]
+        s = int(r["score"] or 0)
+
+        cached_summary, cached_why, _fetched_at = ai_store.get_summary(item_key=item_key)
+        if cached_summary and cached_why:
+            link_summary = cached_summary
+            why_read = cached_why
+        else:
+            ls = summarize_link(url, title_hint=title, source=source, score=s, keywords=KEYWORDS)
+            link_summary = ls.summary
+            why_read = ls.why_read
+            if link_summary or why_read:
+                ai_store.upsert_summary(
+                    item_key=item_key,
+                    link_summary=link_summary,
+                    why_read=why_read,
+                    fetched_at_iso=ls.fetched_at_iso,
+                )
+
+        ai_top.append(
+            {
+                "title": title,
+                "url": url,
+                "summary": link_summary,
+                "why_read": why_read,
+                "item_key": item_key,
+            }
+        )
 
     # Opportunity Radar (SQLite-backed) for dedup + notified state
     db_path = os.path.join(REPO_ROOT, "data", "opportunity_radar.db")
@@ -135,7 +169,7 @@ def main():
         date_label = datetime.datetime.now().strftime("%Y-%m-%d")
         send_combined_daily_digest(
             date_label=date_label,
-            ai_items=[{"title": x["title"], "url": x["url"]} for x in ai_top],
+            ai_items=[{"title": x["title"], "url": x["url"], "summary": x.get("summary", ""), "why_read": x.get("why_read", "")} for x in ai_top],
             opp_items=opp_top,
         )
 
