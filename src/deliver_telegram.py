@@ -2,12 +2,42 @@ import os
 import requests
 
 
-TELEGRAM_MAX_MESSAGE_LEN = 4096
+TELEGRAM_MAX_MESSAGE_LEN = int(os.getenv("TG_MAX_MESSAGE_LEN", "4000"))
+TELEGRAM_MAX_MESSAGE_BYTES = int(os.getenv("TG_MAX_MESSAGE_BYTES", "4000"))
 
 
-def _split_telegram_text(text: str, max_len: int = TELEGRAM_MAX_MESSAGE_LEN) -> list[str]:
+def _tg_utf16_units(text: str) -> int:
+    # Telegram counts characters in UTF-16 code units.
+    return len((text or "").encode("utf-16-le")) // 2
+
+
+def _tg_utf8_bytes(text: str) -> int:
+    return len((text or "").encode("utf-8"))
+
+
+def _fits_telegram_limits(text: str, *, max_units: int, max_bytes: int) -> bool:
+    return _tg_utf16_units(text) <= max_units and _tg_utf8_bytes(text) <= max_bytes
+
+
+def _hard_split(text: str, *, max_units: int, max_bytes: int) -> list[str]:
+    # Split by characters, ensuring each chunk fits both constraints.
+    out: list[str] = []
+    buf = ""
+    for ch in text:
+        cand = buf + ch
+        if buf and not _fits_telegram_limits(cand, max_units=max_units, max_bytes=max_bytes):
+            out.append(buf)
+            buf = ch
+        else:
+            buf = cand
+    if buf:
+        out.append(buf)
+    return out
+
+
+def _split_telegram_text(text: str) -> list[str]:
     text = "" if text is None else str(text)
-    if len(text) <= max_len:
+    if _fits_telegram_limits(text, max_units=TELEGRAM_MAX_MESSAGE_LEN, max_bytes=TELEGRAM_MAX_MESSAGE_BYTES):
         return [text]
 
     # Prefer splitting on line boundaries.
@@ -23,19 +53,15 @@ def _split_telegram_text(text: str, max_len: int = TELEGRAM_MAX_MESSAGE_LEN) -> 
 
     for line in lines:
         candidate = line if not buf else (buf + "\n" + line)
-        if len(candidate) <= max_len:
+        if _fits_telegram_limits(candidate, max_units=TELEGRAM_MAX_MESSAGE_LEN, max_bytes=TELEGRAM_MAX_MESSAGE_BYTES):
             buf = candidate
             continue
 
-        # Flush current buffer first.
         flush()
 
-        # If the single line is still too long, hard-split it.
-        if len(line) > max_len:
-            start = 0
-            while start < len(line):
-                chunks.append(line[start : start + max_len])
-                start += max_len
+        # If the single line is too long, hard-split it.
+        if not _fits_telegram_limits(line, max_units=TELEGRAM_MAX_MESSAGE_LEN, max_bytes=TELEGRAM_MAX_MESSAGE_BYTES):
+            chunks.extend(_hard_split(line, max_units=TELEGRAM_MAX_MESSAGE_LEN, max_bytes=TELEGRAM_MAX_MESSAGE_BYTES))
         else:
             buf = line
 
@@ -70,8 +96,8 @@ def send_message_telegram(text: str, *, parse_mode: str = "Markdown") -> None:
     if os.getenv("TG_DISABLE_MARKDOWN") == "1":
         parse_mode = ""
 
-    # Telegram hard limit is 4096 chars per message.
-    parts = _split_telegram_text(text, TELEGRAM_MAX_MESSAGE_LEN)
+    # Telegram hard limit is ~4096 "characters" (UTF-16 units). We use a safety margin.
+    parts = _split_telegram_text(text)
 
     last_error: RuntimeError | None = None
     for part in parts:
