@@ -1,17 +1,17 @@
-
+﻿
 # AI & Data Science Research Radar (Telegram-only)
 
 Get **daily digests** and **priority alerts** in your Telegram group about the latest AI/Data Science updates:
 - Focus on **top companies**: Google/DeepMind, OpenAI, Microsoft Research, Meta.
 - Includes **new posts** from official blogs and **new papers** from arXiv, Semantic Scholar, Crossref, and Papers With Code.
 - **Daily at 08:00 Nepal time (Asia/Kathmandu)** and **hourly priority alerts** (skip quiet hours).
-- **Privacy-first**: No tokens or IDs in code—use GitHub Actions Secrets.
+- **Privacy-first**: No tokens or IDs in codeâ€”use GitHub Actions Secrets.
 
 ---
 
-## ✨ Features
+## âœ¨ Features
 - **Telegram-only delivery**: short bullets + link + key findings.
-- **Link summaries** (new): each AI item can include a 1–2 sentence summary from the link + a short “Why read” note.
+- **Link summaries** (new): each AI item can include a 1â€“2 sentence summary from the link + a short â€œWhy readâ€ note.
 - **High-signal sources**:
   - Company blogs: Google AI, DeepMind, OpenAI, Microsoft Research, Meta.
   - Research feeds: arXiv (cs.LG, cs.CL, stat.ML), Semantic Scholar, Crossref, Papers With Code.
@@ -22,15 +22,15 @@ Get **daily digests** and **priority alerts** in your Telegram group about the l
 
 ---
 
-## 🚀 Quick Start (for anyone forking the repo)
+## ðŸš€ Quick Start (for anyone forking the repo)
 
 ### 1) Create a Telegram Bot & Group
-1. In Telegram, talk to **@BotFather** → `/newbot` → follow prompts → copy your **bot token**.
+1. In Telegram, talk to **@BotFather** â†’ `/newbot` â†’ follow prompts â†’ copy your **bot token**.
 2. Create a Telegram **group** (e.g., _Daily News on AI/Data Science_).
 3. Add your bot to the group.
 
 ### 2) Get your `chat_id`
-1. Send a message in your group (e.g., “hello”).
+1. Send a message in your group (e.g., â€œhelloâ€).
 2. Open in your browser (replace `<YOUR_BOT_TOKEN>`):
 
 https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates
@@ -41,33 +41,33 @@ Example: `-1001234567789` (keep the minus sign).
 ---
 
 ### 3) Fork this repo & add GitHub Secrets
-- Go to your fork → **Settings → Secrets and variables → Actions → New repository secret**:
-- `TG_TOKEN` → your bot token.
-- `TG_CHAT_ID` → your group chat id.
+- Go to your fork â†’ **Settings â†’ Secrets and variables â†’ Actions â†’ New repository secret**:
+- `TG_TOKEN` â†’ your bot token.
+- `TG_CHAT_ID` â†’ your group chat id.
 
 ---
 
 ### 4) Enable GitHub Actions & run a test
-- In your fork, open **Actions** → enable if prompted.
-- Select **Daily Digest** workflow → **Run workflow** (manual test).
+- In your fork, open **Actions** â†’ enable if prompted.
+- Select **Daily Digest** workflow â†’ **Run workflow** (manual test).
 - You should see a message in your Telegram group.
 
 ---
 
-## 🕒 Scheduling & Quiet Hours
-- **Daily digest**: 08:00 NPT (Asia/Kathmandu) → `cron: "15 2 * * *"` (UTC).
-- **Priority alerts**: hourly, skips quiet hours (22:00–07:00 NPT).
+## ðŸ•’ Scheduling & Quiet Hours
+- **Daily digest**: 08:00 NPT (Asia/Kathmandu) â†’ `cron: "15 2 * * *"` (UTC).
+- **Priority alerts**: hourly, skips quiet hours (22:00â€“07:00 NPT).
 
 ---
 
-## 🔧 Customization
+## ðŸ”§ Customization
 - Add/remove sources: `src/ingest_feeds.py`.
 - Tune ranking keywords: `scripts/run_daily.py`.
 - Change bullet count: `src/deliver_telegram.py`.
 - Adjust quiet hours: `scripts/run_priority.py`.
 
-### Link summaries (summary + “Why read”)
-By default the daily digest / priority alerts will fetch each AI item’s URL and try to extract a short summary plus a short “Why read” signal.
+### Link summaries (summary + â€œWhy readâ€)
+By default the daily digest / priority alerts will fetch each AI itemâ€™s URL and try to extract a short summary plus a short â€œWhy readâ€ signal.
 
 Environment variables:
 - `RR_SUMMARIZE_LINKS` (default `1`): set to `0` to disable fetching/summarizing links.
@@ -79,19 +79,19 @@ Notes:
 
 ---
 
-## ❓ FAQ
+## â“ FAQ
 
 **Q: Does this cost anything?**  
-No—Telegram and GitHub Actions are free for public repos.
+Noâ€”Telegram and GitHub Actions are free for public repos.
 
-**Q: My bot isn’t posting.**  
+**Q: My bot isnâ€™t posting.**  
 - Check bot is in the group.
 - Confirm `TG_CHAT_ID` via `getUpdates`.
 - Trigger **Daily Digest** manually.
 
 ---
 
-## 👐 Contributing
+## ðŸ‘ Contributing
 Pull requests welcome! Ideas:
 - Add more sources (Hugging Face, NVIDIA, conference feeds).
 - Improve ranking heuristics.
@@ -99,5 +99,5 @@ Pull requests welcome! Ideas:
 
 ---
 
-## 📄 License
+## ðŸ“„ License
 Released under the **MIT License** (see `LICENSE`).

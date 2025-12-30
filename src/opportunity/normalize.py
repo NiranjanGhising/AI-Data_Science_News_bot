@@ -88,6 +88,10 @@ class OpportunityItem:
     limited_time: bool = False
     score: float = 0.0
     prep_checklist: Optional[tuple[str, ...]] = None
+    
+    # Program tracker fields
+    tracked_program_id: Optional[str] = None
+    tracked_program_name: Optional[str] = None
 
 
 def normalize_raw_item(raw: dict[str, Any]) -> OpportunityItem:

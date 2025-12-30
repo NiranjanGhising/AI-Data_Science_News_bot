@@ -390,3 +390,168 @@
 {"event": "fetch_start", "source_id": "oracle-blog", "parser": "rss", "url": "https://blogs.oracle.com/rss", "ts": "2025-12-30T09:18:11.556982+00:00", "level": "INFO"}
 {"event": "fetch_done", "source_id": "oracle-blog", "count": 0, "ts": "2025-12-30T09:18:12.012363+00:00", "level": "INFO"}
 {"event": "pipeline_done", "sources": 12, "raw": 141, "deduped": 3, "fresh": 3, "ts": "2025-12-30T09:18:12.126490+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "google-open-source-blog", "parser": "rss", "url": "https://opensource.googleblog.com/feeds/posts/default?alt=rss", "ts": "2025-12-30T09:37:31.711578+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "google-open-source-blog", "count": 0, "ts": "2025-12-30T09:37:34.580981+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "gsoc-updates", "parser": "rss", "url": "https://summerofcode.withgoogle.com/updates/feed/", "ts": "2025-12-30T09:37:34.580981+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "gsoc-updates", "count": 0, "ts": "2025-12-30T09:37:35.045073+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "outreachy-blog", "parser": "rss", "url": "https://www.outreachy.org/blog/feed/", "ts": "2025-12-30T09:37:35.049941+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "outreachy-blog", "count": 41, "ts": "2025-12-30T09:37:36.375677+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "mlh-blog", "parser": "rss", "url": "https://mlh.io/feed", "ts": "2025-12-30T09:37:36.375677+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "mlh-blog", "count": 0, "ts": "2025-12-30T09:37:37.771623+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "github-education-blog", "parser": "rss", "url": "https://github.blog/category/education/feed/", "ts": "2025-12-30T09:37:37.771623+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "github-education-blog", "count": 0, "ts": "2025-12-30T09:37:39.233286+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "aws-training-blog", "parser": "rss", "url": "https://aws.amazon.com/blogs/training-and-certification/feed/", "ts": "2025-12-30T09:37:39.233286+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "aws-training-blog", "count": 10, "ts": "2025-12-30T09:37:39.994471+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "microsoft-learn-blog", "parser": "rss", "url": "https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog/rss", "ts": "2025-12-30T09:37:39.994471+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "microsoft-learn-blog", "count": 0, "ts": "2025-12-30T09:37:43.549261+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "cloudflare-blog", "parser": "rss", "url": "https://blog.cloudflare.com/rss/", "ts": "2025-12-30T09:37:43.549261+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "cloudflare-blog", "count": 20, "ts": "2025-12-30T09:37:44.467821+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "nvidia-developer-blog", "parser": "rss", "url": "https://developer.nvidia.com/blog/feed/", "ts": "2025-12-30T09:37:44.467821+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "nvidia-developer-blog", "count": 50, "ts": "2025-12-30T09:37:45.275774+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "oracle-blog", "parser": "rss", "url": "https://blogs.oracle.com/rss", "ts": "2025-12-30T09:37:45.275774+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "oracle-blog", "count": 0, "ts": "2025-12-30T09:37:45.553672+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "google-cloud-blog", "parser": "rss", "url": "https://cloud.google.com/blog/rss/", "ts": "2025-12-30T09:37:45.553672+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "google-cloud-blog", "count": 0, "ts": "2025-12-30T09:37:46.447856+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "google-developers-blog", "parser": "rss", "url": "https://developers.googleblog.com/feeds/posts/default?alt=rss", "ts": "2025-12-30T09:37:46.447856+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "google-developers-blog", "count": 20, "ts": "2025-12-30T09:37:47.418739+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "google-cloud-community", "parser": "rss", "url": "https://medium.com/feed/google-cloud", "ts": "2025-12-30T09:37:47.418739+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "google-cloud-community", "count": 10, "ts": "2025-12-30T09:37:47.999420+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "qwiklabs-blog", "parser": "rss", "url": "https://www.cloudskillsboost.google/feeds/catalog.rss", "ts": "2025-12-30T09:37:47.999420+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "qwiklabs-blog", "count": 0, "ts": "2025-12-30T09:37:48.539039+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "azure-blog", "parser": "rss", "url": "https://azure.microsoft.com/en-us/blog/feed/", "ts": "2025-12-30T09:37:48.539039+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "azure-blog", "count": 10, "ts": "2025-12-30T09:37:48.856534+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "microsoft-student-blog", "parser": "rss", "url": "https://techcommunity.microsoft.com/t5/student-developer-blog/bg-p/StudentDeveloperBlog/rss", "ts": "2025-12-30T09:37:48.857533+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "microsoft-student-blog", "count": 0, "ts": "2025-12-30T09:37:52.250603+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "aws-startups-blog", "parser": "rss", "url": "https://aws.amazon.com/blogs/startups/feed/", "ts": "2025-12-30T09:37:52.250603+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "aws-startups-blog", "count": 50, "ts": "2025-12-30T09:37:57.102774+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "meta-developers-blog", "parser": "rss", "url": "https://developers.facebook.com/blog/rss", "ts": "2025-12-30T09:37:57.105433+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "meta-developers-blog", "count": 0, "ts": "2025-12-30T09:37:59.329583+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "devpost-hackathons", "parser": "rss", "url": "https://devpost.com/hackathons.rss", "ts": "2025-12-30T09:37:59.329583+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "devpost-hackathons", "count": 0, "ts": "2025-12-30T09:38:00.681638+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "mlh-events", "parser": "rss", "url": "https://mlh.io/seasons/2025/events.rss", "ts": "2025-12-30T09:38:00.681638+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "mlh-events", "count": 0, "ts": "2025-12-30T09:38:01.138218+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "github-blog-general", "parser": "rss", "url": "https://github.blog/feed/", "ts": "2025-12-30T09:38:01.138218+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "github-blog-general", "count": 10, "ts": "2025-12-30T09:38:01.513190+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "linux-foundation-blog", "parser": "rss", "url": "https://www.linuxfoundation.org/blog/rss.xml", "ts": "2025-12-30T09:38:01.513190+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "linux-foundation-blog", "count": 10, "ts": "2025-12-30T09:38:01.867371+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "google-research-blog", "parser": "rss", "url": "https://blog.research.google/feeds/posts/default?alt=rss", "ts": "2025-12-30T09:38:01.867371+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "google-research-blog", "count": 25, "ts": "2025-12-30T09:38:04.402210+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "deepmind-blog", "parser": "rss", "url": "https://www.deepmind.com/blog/rss.xml", "ts": "2025-12-30T09:38:04.402210+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "deepmind-blog", "count": 50, "ts": "2025-12-30T09:38:06.300142+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "lfx-mentorship", "parser": "rss", "url": "https://lfx.linuxfoundation.org/tools/mentorship/rss/", "ts": "2025-12-30T09:38:06.301139+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "lfx-mentorship", "count": 0, "ts": "2025-12-30T09:38:07.751766+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "cncf-blog", "parser": "rss", "url": "https://www.cncf.io/blog/feed/", "ts": "2025-12-30T09:38:07.751766+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "cncf-blog", "count": 10, "ts": "2025-12-30T09:38:08.555441+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "apache-blog", "parser": "rss", "url": "https://news.apache.org/feed/", "ts": "2025-12-30T09:38:08.555441+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "apache-blog", "count": 10, "ts": "2025-12-30T09:38:09.440652+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "dev-to-scholarships", "parser": "rss", "url": "https://dev.to/feed/tag/scholarship", "ts": "2025-12-30T09:38:09.440652+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "dev-to-scholarships", "count": 12, "ts": "2025-12-30T09:38:10.673121+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "dev-to-hackathons", "parser": "rss", "url": "https://dev.to/feed/tag/hackathon", "ts": "2025-12-30T09:38:10.673121+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "dev-to-hackathons", "count": 12, "ts": "2025-12-30T09:38:11.590009+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "dev-to-internships", "parser": "rss", "url": "https://dev.to/feed/tag/internship", "ts": "2025-12-30T09:38:11.590009+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "dev-to-internships", "count": 12, "ts": "2025-12-30T09:38:12.443477+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "hashnode-opportunities", "parser": "rss", "url": "https://hashnode.com/n/opportunities/rss", "ts": "2025-12-30T09:38:12.443477+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "hashnode-opportunities", "count": 0, "ts": "2025-12-30T09:38:12.791388+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "huggingface-blog", "parser": "atom", "url": "https://huggingface.co/blog/feed.xml", "ts": "2025-12-30T09:38:12.791388+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "huggingface-blog", "count": 50, "ts": "2025-12-30T09:38:13.904638+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "openai-blog", "parser": "rss", "url": "https://openai.com/blog/rss/", "ts": "2025-12-30T09:38:13.904638+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "openai-blog", "count": 0, "ts": "2025-12-30T09:38:14.242970+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "anthropic-news", "parser": "rss", "url": "https://www.anthropic.com/news/rss.xml", "ts": "2025-12-30T09:38:14.242970+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "anthropic-news", "count": 0, "ts": "2025-12-30T09:38:14.737004+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "cohere-blog", "parser": "rss", "url": "https://cohere.com/blog/rss.xml", "ts": "2025-12-30T09:38:14.737004+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "cohere-blog", "count": 0, "ts": "2025-12-30T09:38:16.284860+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "ycombinator-blog", "parser": "rss", "url": "https://www.ycombinator.com/blog/rss/", "ts": "2025-12-30T09:38:16.284860+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "ycombinator-blog", "count": 15, "ts": "2025-12-30T09:38:18.150109+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "techstars-blog", "parser": "rss", "url": "https://www.techstars.com/blog/feed/", "ts": "2025-12-30T09:38:18.150109+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "techstars-blog", "count": 0, "ts": "2025-12-30T09:38:20.626831+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "nasscom-blog", "parser": "rss", "url": "https://community.nasscom.in/feed", "ts": "2025-12-30T09:38:20.626831+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "nasscom-blog", "count": 10, "ts": "2025-12-30T09:38:21.361002+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "indian-startup-news", "parser": "rss", "url": "https://inc42.com/feed/", "ts": "2025-12-30T09:38:21.361002+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "indian-startup-news", "count": 24, "ts": "2025-12-30T09:38:23.548055+00:00", "level": "INFO"}
+{"event": "pre_dedup", "count": 452, "ts": "2025-12-30T09:38:23.619692+00:00", "level": "INFO"}
+{"event": "post_dedup", "count": 189, "ts": "2025-12-30T09:38:44.465380+00:00", "level": "INFO"}
+{"event": "program_match", "program_id": "kaggle-competitions", "item_title": "NVIDIA Kaggle Grandmasters Win Artificial General Intelligence Competition", "is_opening": false, "ts": "2025-12-30T09:38:44.508291+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "google-open-source-blog", "parser": "rss", "url": "https://opensource.googleblog.com/feeds/posts/default?alt=rss", "ts": "2025-12-30T09:39:11.481082+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "google-open-source-blog", "count": 0, "ts": "2025-12-30T09:39:14.087736+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "gsoc-updates", "parser": "rss", "url": "https://summerofcode.withgoogle.com/updates/feed/", "ts": "2025-12-30T09:39:14.087736+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "gsoc-updates", "count": 0, "ts": "2025-12-30T09:39:14.535652+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "outreachy-blog", "parser": "rss", "url": "https://www.outreachy.org/blog/feed/", "ts": "2025-12-30T09:39:14.535652+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "outreachy-blog", "count": 41, "ts": "2025-12-30T09:39:15.742135+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "mlh-blog", "parser": "rss", "url": "https://mlh.io/feed", "ts": "2025-12-30T09:39:15.742135+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "mlh-blog", "count": 0, "ts": "2025-12-30T09:39:17.218084+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "github-education-blog", "parser": "rss", "url": "https://github.blog/category/education/feed/", "ts": "2025-12-30T09:39:17.218084+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "github-education-blog", "count": 0, "ts": "2025-12-30T09:39:18.525193+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "aws-training-blog", "parser": "rss", "url": "https://aws.amazon.com/blogs/training-and-certification/feed/", "ts": "2025-12-30T09:39:18.525193+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "aws-training-blog", "count": 10, "ts": "2025-12-30T09:39:19.193158+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "microsoft-learn-blog", "parser": "rss", "url": "https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog/rss", "ts": "2025-12-30T09:39:19.193158+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "microsoft-learn-blog", "count": 0, "ts": "2025-12-30T09:39:23.095214+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "cloudflare-blog", "parser": "rss", "url": "https://blog.cloudflare.com/rss/", "ts": "2025-12-30T09:39:23.095214+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "cloudflare-blog", "count": 20, "ts": "2025-12-30T09:39:24.080910+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "nvidia-developer-blog", "parser": "rss", "url": "https://developer.nvidia.com/blog/feed/", "ts": "2025-12-30T09:39:24.080910+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "nvidia-developer-blog", "count": 50, "ts": "2025-12-30T09:39:25.220694+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "oracle-blog", "parser": "rss", "url": "https://blogs.oracle.com/rss", "ts": "2025-12-30T09:39:25.220694+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "oracle-blog", "count": 0, "ts": "2025-12-30T09:39:25.458611+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "google-cloud-blog", "parser": "rss", "url": "https://cloud.google.com/blog/rss/", "ts": "2025-12-30T09:39:25.458611+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "google-cloud-blog", "count": 0, "ts": "2025-12-30T09:39:26.290664+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "google-developers-blog", "parser": "rss", "url": "https://developers.googleblog.com/feeds/posts/default?alt=rss", "ts": "2025-12-30T09:39:26.290664+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "google-developers-blog", "count": 20, "ts": "2025-12-30T09:39:27.648479+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "google-cloud-community", "parser": "rss", "url": "https://medium.com/feed/google-cloud", "ts": "2025-12-30T09:39:27.648479+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "google-cloud-community", "count": 10, "ts": "2025-12-30T09:39:28.712057+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "qwiklabs-blog", "parser": "rss", "url": "https://www.cloudskillsboost.google/feeds/catalog.rss", "ts": "2025-12-30T09:39:28.712057+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "qwiklabs-blog", "count": 0, "ts": "2025-12-30T09:39:29.532056+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "azure-blog", "parser": "rss", "url": "https://azure.microsoft.com/en-us/blog/feed/", "ts": "2025-12-30T09:39:29.532056+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "azure-blog", "count": 10, "ts": "2025-12-30T09:39:29.949294+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "microsoft-student-blog", "parser": "rss", "url": "https://techcommunity.microsoft.com/t5/student-developer-blog/bg-p/StudentDeveloperBlog/rss", "ts": "2025-12-30T09:39:29.949294+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "microsoft-student-blog", "count": 0, "ts": "2025-12-30T09:39:33.992435+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "aws-startups-blog", "parser": "rss", "url": "https://aws.amazon.com/blogs/startups/feed/", "ts": "2025-12-30T09:39:33.992435+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "aws-startups-blog", "count": 50, "ts": "2025-12-30T09:39:38.926275+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "meta-developers-blog", "parser": "rss", "url": "https://developers.facebook.com/blog/rss", "ts": "2025-12-30T09:39:38.926730+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "meta-developers-blog", "count": 0, "ts": "2025-12-30T09:39:40.655909+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "devpost-hackathons", "parser": "rss", "url": "https://devpost.com/hackathons.rss", "ts": "2025-12-30T09:39:40.657126+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "devpost-hackathons", "count": 0, "ts": "2025-12-30T09:39:41.794809+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "mlh-events", "parser": "rss", "url": "https://mlh.io/seasons/2025/events.rss", "ts": "2025-12-30T09:39:41.794809+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "mlh-events", "count": 0, "ts": "2025-12-30T09:39:42.296487+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "github-blog-general", "parser": "rss", "url": "https://github.blog/feed/", "ts": "2025-12-30T09:39:42.297486+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "github-blog-general", "count": 10, "ts": "2025-12-30T09:39:42.657078+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "linux-foundation-blog", "parser": "rss", "url": "https://www.linuxfoundation.org/blog/rss.xml", "ts": "2025-12-30T09:39:42.657078+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "linux-foundation-blog", "count": 10, "ts": "2025-12-30T09:39:42.991456+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "google-research-blog", "parser": "rss", "url": "https://blog.research.google/feeds/posts/default?alt=rss", "ts": "2025-12-30T09:39:42.991456+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "google-research-blog", "count": 25, "ts": "2025-12-30T09:39:45.668416+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "deepmind-blog", "parser": "rss", "url": "https://www.deepmind.com/blog/rss.xml", "ts": "2025-12-30T09:39:45.668416+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "deepmind-blog", "count": 50, "ts": "2025-12-30T09:39:47.058967+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "lfx-mentorship", "parser": "rss", "url": "https://lfx.linuxfoundation.org/tools/mentorship/rss/", "ts": "2025-12-30T09:39:47.058967+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "lfx-mentorship", "count": 0, "ts": "2025-12-30T09:39:47.674756+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "cncf-blog", "parser": "rss", "url": "https://www.cncf.io/blog/feed/", "ts": "2025-12-30T09:39:47.674756+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "cncf-blog", "count": 10, "ts": "2025-12-30T09:39:48.305761+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "apache-blog", "parser": "rss", "url": "https://news.apache.org/feed/", "ts": "2025-12-30T09:39:48.305761+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "apache-blog", "count": 10, "ts": "2025-12-30T09:39:49.079780+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "dev-to-scholarships", "parser": "rss", "url": "https://dev.to/feed/tag/scholarship", "ts": "2025-12-30T09:39:49.079780+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "dev-to-scholarships", "count": 12, "ts": "2025-12-30T09:39:49.366696+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "dev-to-hackathons", "parser": "rss", "url": "https://dev.to/feed/tag/hackathon", "ts": "2025-12-30T09:39:49.366696+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "dev-to-hackathons", "count": 12, "ts": "2025-12-30T09:39:49.718481+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "dev-to-internships", "parser": "rss", "url": "https://dev.to/feed/tag/internship", "ts": "2025-12-30T09:39:49.718783+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "dev-to-internships", "count": 12, "ts": "2025-12-30T09:39:50.054914+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "hashnode-opportunities", "parser": "rss", "url": "https://hashnode.com/n/opportunities/rss", "ts": "2025-12-30T09:39:50.054914+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "hashnode-opportunities", "count": 0, "ts": "2025-12-30T09:39:50.336903+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "huggingface-blog", "parser": "atom", "url": "https://huggingface.co/blog/feed.xml", "ts": "2025-12-30T09:39:50.336903+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "huggingface-blog", "count": 50, "ts": "2025-12-30T09:39:51.309287+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "openai-blog", "parser": "rss", "url": "https://openai.com/blog/rss/", "ts": "2025-12-30T09:39:51.309287+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "openai-blog", "count": 0, "ts": "2025-12-30T09:39:51.607835+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "anthropic-news", "parser": "rss", "url": "https://www.anthropic.com/news/rss.xml", "ts": "2025-12-30T09:39:51.607835+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "anthropic-news", "count": 0, "ts": "2025-12-30T09:39:52.129872+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "cohere-blog", "parser": "rss", "url": "https://cohere.com/blog/rss.xml", "ts": "2025-12-30T09:39:52.129872+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "cohere-blog", "count": 0, "ts": "2025-12-30T09:39:53.480897+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "ycombinator-blog", "parser": "rss", "url": "https://www.ycombinator.com/blog/rss/", "ts": "2025-12-30T09:39:53.480897+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "ycombinator-blog", "count": 15, "ts": "2025-12-30T09:39:55.149381+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "techstars-blog", "parser": "rss", "url": "https://www.techstars.com/blog/feed/", "ts": "2025-12-30T09:39:55.149381+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "techstars-blog", "count": 0, "ts": "2025-12-30T09:39:57.803937+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "nasscom-blog", "parser": "rss", "url": "https://community.nasscom.in/feed", "ts": "2025-12-30T09:39:57.803937+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "nasscom-blog", "count": 10, "ts": "2025-12-30T09:39:58.325656+00:00", "level": "INFO"}
+{"event": "fetch_start", "source_id": "indian-startup-news", "parser": "rss", "url": "https://inc42.com/feed/", "ts": "2025-12-30T09:39:58.325656+00:00", "level": "INFO"}
+{"event": "fetch_done", "source_id": "indian-startup-news", "count": 24, "ts": "2025-12-30T09:40:00.776819+00:00", "level": "INFO"}
+{"event": "pre_dedup", "count": 452, "ts": "2025-12-30T09:40:00.840851+00:00", "level": "INFO"}
+{"event": "post_dedup", "count": 189, "ts": "2025-12-30T09:40:23.289196+00:00", "level": "INFO"}
+{"event": "program_match", "program_id": "kaggle-competitions", "item_title": "NVIDIA Kaggle Grandmasters Win Artificial General Intelligence Competition", "is_opening": false, "ts": "2025-12-30T09:40:23.337272+00:00", "level": "INFO"}
+{"event": "program_match", "program_id": "lfx-mentorship", "item_title": "The mentorship flywheel: How CNCF is growing the next generation of cloud native leaders", "is_opening": false, "ts": "2025-12-30T09:40:23.337788+00:00", "level": "INFO"}
+{"event": "program_match", "program_id": "microsoft-imagine-cup", "item_title": "🚀 LIVE & UPCOMING TECH & HACKATHON OPPORTUNITIES (2025–26)", "is_opening": true, "ts": "2025-12-30T09:40:23.351680+00:00", "level": "INFO"}
+{"event": "pipeline_done", "sources": 39, "raw": 461, "deduped": 189, "fresh": 207, "ts": "2025-12-30T09:40:23.393394+00:00", "level": "INFO"}

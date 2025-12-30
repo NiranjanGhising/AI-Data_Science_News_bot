@@ -12,6 +12,14 @@ urgency_keywords:
   - ends on
   - closing soon
   - final day
+  - hurry
+  - limited spots
+  - few spots left
+  - ending soon
+  - don't miss
+  - act now
+  - last day
+  - final call
 
 limited_time_keywords:
   - free
@@ -26,12 +34,24 @@ limited_time_keywords:
   - seats are limited
   - first come
   - while supplies last
+  - exclusive
+  - special offer
+  - free credits
+  - free tier
+  - no cost
+  - complimentary
+  - swag
+  - t-shirt
+  - merchandise
 
 negative_keywords:
   - recap
   - podcast
   - webinar recording
   - replay
+  - what we learned
+  - highlights from
+  - year in review
 
 category_keywords:
   program:
@@ -41,39 +61,71 @@ category_keywords:
     - gsoc
     - outreachy
     - mentorship
+    - ambassador
+    - champions
+    - advocate
+    - community builder
+    - developer program
+    - student program
   internship:
     - internship
     - intern
     - student program
+    - octernship
+    - residency
   course:
     - course
     - training
     - learning path
     - workshop
     - bootcamp
+    - tutorial
+    - masterclass
+    - skill badge
+    - learning program
+    - free course
   certification:
     - certification
     - certified
     - exam
     - badge
     - voucher
+    - credential
+    - accreditation
+    - free certification
+    - certification voucher
   challenge:
     - challenge
     - arcade
     - quest
     - hackathon
     - competition
+    - contest
+    - game day
+    - gameday
+    - jam
+    - skills challenge
+    - cloud challenge
+    - coding challenge
   scholarship:
     - scholarship
     - grant
     - stipend
     - tuition
+    - financial aid
+    - funding
+    - award
+    - prize money
   conference:
     - conference
     - summit
     - event
     - call for proposals
     - cfp
+    - meetup
+    - developer day
+    - devfest
+    - community day
 
 skill_keywords:
   - cloud
@@ -86,6 +138,44 @@ skill_keywords:
   - backend
   - software engineering
   - open source
+  - python
+  - javascript
+  - react
+  - node
+  - aws
+  - azure
+  - gcp
+  - docker
+  - terraform
+  - generative ai
+  - llm
+  - deep learning
+  - mlops
+  - data science
+  - web development
+  - mobile development
+  - android
+  - ios
+  - flutter
+  - blockchain
+  - web3
+
+# Specific program triggers to watch for
+program_triggers:
+  - applications open
+  - registration open
+  - now accepting
+  - sign up now
+  - enrollment open
+  - join now
+  - register now
+  - call for applications
+  - accepting applications
+  - apply now
+  - get started
+  - launch
+  - announcing
+  - introducing
 
 recurrence:
   gsoc:
@@ -103,3 +193,27 @@ recurrence:
       - draft proposal & get mentor feedback
       - set mentorship calls
       - join chats/mailing lists
+      
+  google_arcade:
+    triggers:
+      - arcade facilitator
+      - arcade program
+      - cloud arcade
+      - skills boost arcade
+    prep_checklist:
+      - create cloud skills boost account
+      - join facilitator program if eligible
+      - complete skill badges
+      - track progress on leaderboard
+      
+  microsoft_challenge:
+    triggers:
+      - cloud skills challenge
+      - ignite challenge
+      - build challenge
+      - learn challenge
+    prep_checklist:
+      - create microsoft learn account
+      - select challenge track
+      - complete modules daily
+      - claim certification voucher

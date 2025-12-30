@@ -1,0 +1,306 @@
+# Tracked Programs - Programs you specifically want to track
+# These will be searched across all sources and highlighted when found
+# The bot will also do periodic web searches for these programs
+
+tracked_programs:
+  # ============================================
+  # GOOGLE PROGRAMS
+  # ============================================
+  - id: google-cloud-arcade
+    name: Google Cloud Arcade
+    keywords:
+      - google cloud arcade
+      - arcade facilitator
+      - cloud skills boost
+      - google arcade
+      - qwiklabs arcade
+      - arcade program
+    search_urls:
+      - https://www.cloudskillsboost.google/games
+      - https://rsvp.withgoogle.com/
+    typical_timing: "Multiple times per year"
+    category: challenge
+    priority: high
+    notes: "Free cloud credits and swag for completing learning paths"
+
+  - id: gsoc
+    name: Google Summer of Code
+    keywords:
+      - google summer of code
+      - gsoc 2025
+      - gsoc 2026
+      - summer of code
+      - gsoc mentoring
+      - gsoc contributor
+    search_urls:
+      - https://summerofcode.withgoogle.com/
+    typical_timing: "Feb-Mar applications, May-Aug program"
+    category: program
+    priority: high
+    notes: "Stipend for open source contributions"
+
+  - id: google-season-of-docs
+    name: Google Season of Docs
+    keywords:
+      - google season of docs
+      - gsod
+      - season of docs
+    search_urls:
+      - https://developers.google.com/season-of-docs
+    typical_timing: "Feb-Apr applications"
+    category: program
+    priority: medium
+    notes: "For technical writers"
+
+  - id: google-hashcode
+    name: Google Hash Code / Coding Competitions
+    keywords:
+      - google hash code
+      - hashcode
+      - google coding competition
+      - kick start
+      - code jam
+    search_urls:
+      - https://codingcompetitions.withgoogle.com/
+    typical_timing: "Throughout the year"
+    category: competition
+    priority: medium
+
+  # ============================================
+  # MICROSOFT PROGRAMS
+  # ============================================
+  - id: microsoft-imagine-cup
+    name: Microsoft Imagine Cup
+    keywords:
+      - imagine cup
+      - microsoft imagine cup
+    search_urls:
+      - https://imaginecup.microsoft.com/
+    typical_timing: "Oct-Apr"
+    category: competition
+    priority: high
+    notes: "$100K grand prize"
+
+  - id: microsoft-learn-challenges
+    name: Microsoft Learn Cloud Skills Challenges
+    keywords:
+      - microsoft learn challenge
+      - cloud skills challenge
+      - azure challenge
+      - microsoft ignite challenge
+      - microsoft build challenge
+    search_urls:
+      - https://www.microsoft.com/en-us/cloudskillschallenge
+    typical_timing: "Around Ignite (Nov) and Build (May)"
+    category: challenge
+    priority: high
+    notes: "Free certifications and swag"
+
+  - id: mlsa
+    name: Microsoft Learn Student Ambassadors
+    keywords:
+      - microsoft learn student ambassador
+      - mlsa
+      - student ambassador
+    search_urls:
+      - https://studentambassadors.microsoft.com/
+    typical_timing: "Rolling applications"
+    category: program
+    priority: medium
+    notes: "Free Azure credits, certifications, and swag"
+
+  # ============================================
+  # AWS PROGRAMS
+  # ============================================
+  - id: aws-educate
+    name: AWS Educate
+    keywords:
+      - aws educate
+      - aws student
+      - aws academy
+    search_urls:
+      - https://aws.amazon.com/education/awseducate/
+    typical_timing: "Always open"
+    category: program
+    priority: medium
+
+  - id: aws-builders
+    name: AWS Community Builders
+    keywords:
+      - aws community builders
+      - aws builders
+    search_urls:
+      - https://aws.amazon.com/developer/community/community-builders/
+    typical_timing: "Quarterly cohorts"
+    category: program
+    priority: medium
+    notes: "Free credits and AWS swag"
+
+  - id: aws-gameday
+    name: AWS GameDay
+    keywords:
+      - aws gameday
+      - aws game day
+    search_urls:
+      - https://aws.amazon.com/gameday/
+    typical_timing: "Multiple times per year"
+    category: challenge
+    priority: medium
+
+  # ============================================
+  # META PROGRAMS  
+  # ============================================
+  - id: meta-developer-circles
+    name: Meta Developer Circles
+    keywords:
+      - meta developer circles
+      - facebook developer circles
+      - devc
+    search_urls:
+      - https://developers.facebook.com/developercircles/
+    typical_timing: "Rolling"
+    category: program
+    priority: medium
+
+  # ============================================
+  # OPEN SOURCE PROGRAMS
+  # ============================================
+  - id: outreachy
+    name: Outreachy
+    keywords:
+      - outreachy
+      - outreachy internship
+    search_urls:
+      - https://www.outreachy.org/
+    typical_timing: "Dec-Mar and May-Aug cohorts"
+    category: internship
+    priority: high
+    notes: "$7000 stipend for underrepresented groups"
+
+  - id: lfx-mentorship
+    name: LFX Mentorship
+    keywords:
+      - lfx mentorship
+      - linux foundation mentorship
+      - cncf mentorship
+    search_urls:
+      - https://mentorship.lfx.linuxfoundation.org/
+    typical_timing: "Spring, Summer, Fall terms"
+    category: program
+    priority: high
+    notes: "Stipend for open source contributions"
+
+  - id: mlh-fellowship
+    name: MLH Fellowship
+    keywords:
+      - mlh fellowship
+      - major league hacking fellowship
+    search_urls:
+      - https://fellowship.mlh.io/
+    typical_timing: "Multiple cohorts per year"
+    category: fellowship
+    priority: high
+    notes: "Paid open source internship"
+
+  # ============================================
+  # HACKATHONS & COMPETITIONS
+  # ============================================
+  - id: hacktoberfest
+    name: Hacktoberfest
+    keywords:
+      - hacktoberfest
+      - digitalocean hacktoberfest
+    search_urls:
+      - https://hacktoberfest.com/
+    typical_timing: "October"
+    category: challenge
+    priority: high
+    notes: "T-shirt/tree planting for PRs"
+
+  - id: github-octernships
+    name: GitHub Octernships
+    keywords:
+      - github octernship
+      - octernship
+    search_urls:
+      - https://education.github.com/
+    typical_timing: "Rolling"
+    category: internship
+    priority: medium
+
+  # ============================================
+  # AI/ML SPECIFIC
+  # ============================================
+  - id: kaggle-competitions
+    name: Kaggle Competitions
+    keywords:
+      - kaggle competition
+      - kaggle challenge
+      - kaggle prize
+    search_urls:
+      - https://www.kaggle.com/competitions
+    typical_timing: "Always running"
+    category: competition
+    priority: medium
+
+  - id: huggingface-fellowship
+    name: Hugging Face Fellowship
+    keywords:
+      - huggingface fellowship
+      - hugging face fellowship
+      - hf fellowship
+    search_urls:
+      - https://huggingface.co/
+    typical_timing: "Varies"
+    category: fellowship
+    priority: medium
+
+  # ============================================
+  # SCHOLARSHIPS
+  # ============================================
+  - id: github-education
+    name: GitHub Student Developer Pack
+    keywords:
+      - github student developer pack
+      - student developer pack
+      - github education
+    search_urls:
+      - https://education.github.com/pack
+    typical_timing: "Always open for students"
+    category: scholarship
+    priority: high
+    notes: "Free tools worth thousands of dollars"
+
+  - id: jetbrains-student
+    name: JetBrains Free Student License
+    keywords:
+      - jetbrains student
+      - jetbrains free license
+      - intellij student
+    search_urls:
+      - https://www.jetbrains.com/community/education/
+    typical_timing: "Always open"
+    category: scholarship
+    priority: medium
+
+# Alert settings for tracked programs
+alert_settings:
+  # Search web for these programs every N hours
+  web_search_interval_hours: 12
+  
+  # Keywords that indicate a program is opening soon
+  opening_indicators:
+    - applications open
+    - registration open
+    - now accepting
+    - sign up now
+    - applications are open
+    - join now
+    - register now
+    - enrollment open
+    - accepting applications
+    - call for
+  
+  # Immediately notify (don't wait for daily digest)
+  instant_notify_priority:
+    - high

@@ -12,22 +12,6 @@ sources:
     rateLimitSeconds: 2
     tags: [google, open_source, program]
 
-  - id: google-developers-blog
-    name: Google Developers Blog
-    url: https://developers.googleblog.com/feeds/posts/default?alt=rss
-    parser: rss
-    enabled: true
-    rateLimitSeconds: 2
-    tags: [google, developers, program]
-
-  - id: google-cloud-blog
-    name: Google Cloud Blog
-    url: https://cloud.google.com/blog/rss/
-    parser: rss
-    enabled: true
-    rateLimitSeconds: 2
-    tags: [google, cloud, challenge, certification, training]
-
   - id: gsoc-updates
     name: Google Summer of Code (Updates)
     url: https://summerofcode.withgoogle.com/updates/feed/
@@ -99,3 +83,262 @@ sources:
     enabled: true
     rateLimitSeconds: 2
     tags: [oracle, certification, course]
+
+  # ============================================
+  # GOOGLE CLOUD & LEARNING PROGRAMS
+  # ============================================
+  - id: google-cloud-blog
+    name: Google Cloud Blog
+    url: https://cloud.google.com/blog/rss/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [google, cloud, certification, program, arcade]
+
+  - id: google-developers-blog
+    name: Google Developers Blog
+    url: https://developers.googleblog.com/feeds/posts/default?alt=rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [google, program, course, certification]
+
+  - id: google-cloud-community
+    name: Google Cloud Community Blog
+    url: https://medium.com/feed/google-cloud
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [google, cloud, arcade, program, community]
+
+  - id: qwiklabs-blog
+    name: Google Cloud Skills Boost Blog
+    url: https://www.cloudskillsboost.google/feeds/catalog.rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [google, qwiklabs, cloud, arcade, skills, badge]
+
+  # ============================================
+  # TECH COMPANY LEARNING PROGRAMS
+  # ============================================
+  - id: azure-blog
+    name: Microsoft Azure Blog
+    url: https://azure.microsoft.com/en-us/blog/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [microsoft, azure, certification, challenge]
+
+  - id: microsoft-student-blog
+    name: Microsoft Student Developer Blog
+    url: https://techcommunity.microsoft.com/t5/student-developer-blog/bg-p/StudentDeveloperBlog/rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [microsoft, student, program, imagine_cup]
+
+  - id: aws-startups-blog
+    name: AWS Startups Blog
+    url: https://aws.amazon.com/blogs/startups/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [aws, startup, credits, program]
+
+  - id: meta-developers-blog
+    name: Meta Developers Blog
+    url: https://developers.facebook.com/blog/rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [meta, facebook, program, hackathon]
+
+  # ============================================
+  # HACKATHON AGGREGATORS
+  # ============================================
+  - id: devpost-hackathons
+    name: DevPost Featured Hackathons
+    url: https://devpost.com/hackathons.rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [hackathon, competition, prize, devpost]
+
+  - id: mlh-events
+    name: MLH Events Calendar
+    url: https://mlh.io/seasons/2025/events.rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [mlh, hackathon, students, fellowship]
+
+  # ============================================
+  # SCHOLARSHIPS & FELLOWSHIPS
+  # ============================================
+  - id: github-blog-general
+    name: GitHub Blog
+    url: https://github.blog/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [github, program, scholarship, copilot, students]
+
+  - id: linux-foundation-blog
+    name: Linux Foundation Blog
+    url: https://www.linuxfoundation.org/blog/rss.xml
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [linux, open_source, certification, scholarship, lfx]
+
+  - id: google-research-blog
+    name: Google Research Blog
+    url: https://blog.research.google/feeds/posts/default?alt=rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [google, research, fellowship, phd, internship]
+
+  - id: deepmind-blog
+    name: DeepMind Blog
+    url: https://www.deepmind.com/blog/rss.xml
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [deepmind, google, research, internship, fellowship]
+
+  # ============================================
+  # OPEN SOURCE PROGRAMS
+  # ============================================
+  - id: lfx-mentorship
+    name: LFX Mentorship Blog
+    url: https://lfx.linuxfoundation.org/tools/mentorship/rss/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [linux, mentorship, open_source, stipend, lfx]
+
+  - id: cncf-blog
+    name: CNCF Blog
+    url: https://www.cncf.io/blog/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [cncf, kubernetes, open_source, mentorship]
+
+  - id: apache-blog
+    name: Apache Software Foundation Blog
+    url: https://news.apache.org/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [apache, open_source, mentorship]
+
+  # ============================================
+  # DEVELOPER COMMUNITIES & NEWS
+  # ============================================
+  - id: dev-to-scholarships
+    name: DEV Community (Scholarships Tag)
+    url: https://dev.to/feed/tag/scholarship
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [community, scholarship, program]
+
+  - id: dev-to-hackathons
+    name: DEV Community (Hackathons Tag)
+    url: https://dev.to/feed/tag/hackathon
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [community, hackathon, competition]
+
+  - id: dev-to-internships
+    name: DEV Community (Internships Tag)
+    url: https://dev.to/feed/tag/internship
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [community, internship, job]
+
+  - id: hashnode-opportunities
+    name: Hashnode (Opportunities Tag)
+    url: https://hashnode.com/n/opportunities/rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [community, program, hackathon]
+
+  # ============================================
+  # AI/ML SPECIFIC PROGRAMS
+  # ============================================
+  - id: huggingface-blog
+    name: Hugging Face Blog
+    url: https://huggingface.co/blog/feed.xml
+    parser: atom
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [ai, ml, fellowship, grant, huggingface]
+
+  - id: openai-blog
+    name: OpenAI Blog
+    url: https://openai.com/blog/rss/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [openai, ai, research, fellowship, grant]
+
+  - id: anthropic-news
+    name: Anthropic News
+    url: https://www.anthropic.com/news/rss.xml
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [anthropic, ai, research, fellowship]
+
+  - id: cohere-blog
+    name: Cohere Blog
+    url: https://cohere.com/blog/rss.xml
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [cohere, ai, program, grant]
+
+  # ============================================
+  # STARTUP & ENTREPRENEURSHIP
+  # ============================================
+  - id: ycombinator-blog
+    name: Y Combinator Blog
+    url: https://www.ycombinator.com/blog/rss/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [ycombinator, startup, funding, accelerator]
+
+  - id: techstars-blog
+    name: Techstars Blog
+    url: https://www.techstars.com/blog/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [techstars, startup, accelerator, program]
+
+  # ============================================
+  # INDIAN SPECIFIC PROGRAMS
+  # ============================================
+  - id: nasscom-blog
+    name: NASSCOM Community
+    url: https://community.nasscom.in/feed
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [india, nasscom, startup, program]
+
+  - id: indian-startup-news
+    name: Inc42 (Funding News)
+    url: https://inc42.com/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [india, startup, funding, grants]

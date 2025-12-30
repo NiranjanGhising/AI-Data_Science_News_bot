@@ -8,10 +8,10 @@ weights:
   rarity: 0.05
 
 thresholds:
-  urgent_threshold_days: 7
-  dedup_window_days: 60
-  fuzzy_jaro_winkler_threshold: 0.88
+  urgent_threshold_days: 14  # Extended from 7 to 14 days
+  dedup_window_days: 30      # Reduced from 60 to 30 days
+  fuzzy_jaro_winkler_threshold: 0.92  # Increased from 0.88 (less aggressive dedup)
 
 limits:
-  daily_max_items: 8
-  priority_max_items: 3
+  daily_max_items: 15        # Increased from 8 to show more opportunities
+  priority_max_items: 5      # Increased from 3

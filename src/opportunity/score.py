@@ -5,7 +5,6 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from .normalize import OpportunityItem
-from .text_match import any_keyword
 
 
 def _now_utc() -> datetime:
@@ -44,13 +43,13 @@ def _benefit_value(item: OpportunityItem, keywords_cfg: dict[str, Any]) -> float
     text = _text(item)
 
     value = 0.4
-    if any_keyword(text, limited):
+    if any(k in text for k in limited):
         value += 0.4
     if "scholarship" in text or "stipend" in text or "grant" in text:
         value += 0.3
     if "voucher" in text or "free" in text:
         value += 0.2
-    if any_keyword(text, urgency):
+    if any(k in text for k in urgency):
         value += 0.1
     return _clamp01(value)
 
