@@ -1,0 +1,28 @@
+name: Check Tracked Programs (Every 8 hours)
+
+on:
+  schedule:
+    # Run at 00:00, 08:00, 16:00 UTC (05:45, 13:45, 21:45 NPT)
+    - cron: "0 0,8,16 * * *"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: 'pip'
+
+      - run: pip install -r requirements.txt
+      
+      - name: Check tracked programs for openings
+        run: python -m scripts.check_tracked_programs
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}

@@ -159,19 +159,20 @@ sources:
   # ============================================
   - id: devpost-hackathons
     name: DevPost Featured Hackathons
-    url: https://devpost.com/hackathons.rss
-    parser: rss
+    url: https://devpost.com/api/hackathons?status=open&order_by=deadline
+    parser: json
     enabled: true
     rateLimitSeconds: 2
     tags: [hackathon, competition, prize, devpost]
 
   - id: mlh-events
     name: MLH Events Calendar
-    url: https://mlh.io/seasons/2025/events.rss
-    parser: rss
-    enabled: true
+    url: https://mlh.io/seasons/2025/events
+    parser: html
+    enabled: false
     rateLimitSeconds: 2
     tags: [mlh, hackathon, students, fellowship]
+    notes: "MLH doesn't have RSS - disabled until HTML parser is enhanced"
 
   # ============================================
   # SCHOLARSHIPS & FELLOWSHIPS
@@ -212,12 +213,13 @@ sources:
   # OPEN SOURCE PROGRAMS
   # ============================================
   - id: lfx-mentorship
-    name: LFX Mentorship Blog
-    url: https://lfx.linuxfoundation.org/tools/mentorship/rss/
-    parser: rss
-    enabled: true
+    name: LFX Mentorship Programs
+    url: https://mentorship.lfx.linuxfoundation.org/api/v1/programs?status=accepting
+    parser: json
+    enabled: false
     rateLimitSeconds: 2
     tags: [linux, mentorship, open_source, stipend, lfx]
+    notes: "Requires custom JSON parser - disabled for now"
 
   - id: cncf-blog
     name: CNCF Blog
@@ -342,3 +344,71 @@ sources:
     enabled: true
     rateLimitSeconds: 2
     tags: [india, startup, funding, grants]
+
+  # ============================================
+  # ADDITIONAL RELIABLE SOURCES
+  # ============================================
+  - id: hackerearth-challenges
+    name: HackerEarth Challenges
+    url: https://www.hackerearth.com/challenges/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [hackathon, challenge, competition, coding]
+
+  - id: codechef-contests
+    name: CodeChef Contests
+    url: https://www.codechef.com/contests?itm_medium=navmenu&itm_campaign=contests
+    parser: html
+    enabled: false
+    rateLimitSeconds: 2
+    tags: [competition, coding, contest]
+    notes: "No RSS - disabled until HTML parser enhanced"
+
+  - id: hacker-news-show
+    name: Hacker News Show HN
+    url: https://hnrss.org/show
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [startup, launch, community, tech]
+
+  - id: producthunt
+    name: Product Hunt
+    url: https://www.producthunt.com/feed
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [startup, launch, product, tech]
+
+  - id: reddit-cscareerquestions
+    name: Reddit CS Career Questions
+    url: https://www.reddit.com/r/cscareerquestions/.rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [career, internship, job, advice]
+
+  - id: reddit-learnprogramming
+    name: Reddit Learn Programming
+    url: https://www.reddit.com/r/learnprogramming/.rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [learning, course, tutorial, community]
+
+  - id: freecodecamp-news
+    name: freeCodeCamp News
+    url: https://www.freecodecamp.org/news/rss/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [course, tutorial, certification, free]
+
+  - id: coursera-blog
+    name: Coursera Blog
+    url: https://blog.coursera.org/feed/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [course, certification, scholarship, free]
