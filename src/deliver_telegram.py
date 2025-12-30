@@ -38,6 +38,19 @@ def send_message_telegram(text: str, *, parse_mode: str = "Markdown") -> None:
         data=payload,
         timeout=30,
     )
+
+    # Telegram Markdown can fail on edge-case titles/URLs. Auto-fallback to plain text.
+    if (not resp.ok) and parse_mode:
+        body0 = (resp.text or "").lower()
+        if resp.status_code == 400 and ("can't parse" in body0 or "cant parse" in body0 or "parse entities" in body0):
+            payload2 = {"chat_id": chat_id, "text": text}
+            resp2 = requests.post(
+                f"https://api.telegram.org/bot{token}/sendMessage",
+                data=payload2,
+                timeout=30,
+            )
+            resp = resp2
+
     if not resp.ok:
         body = (resp.text or "").strip()
         if len(body) > 1200:
@@ -73,13 +86,18 @@ def format_opportunity_bullet(item) -> str:
     url = _escape_md(item.get("content_url") or item.get("url") or "")
     deadline = _escape_md(_format_opportunity_deadline(item.get("deadline_at")))
 
+    ascii_only = os.getenv("RR_ASCII_ONLY") == "1"
+
     markers = []
     if item.get("urgent"):
-        markers.append("🔥")
+        markers.append("URGENT" if ascii_only else "🔥")
     if item.get("limited_time"):
-        markers.append("⏳")
+        markers.append("LIMITED" if ascii_only else "⏳")
 
-    prefix = " ".join(markers) + " " if markers else "⚡ "
+    if markers:
+        prefix = (" ".join(markers) + " ")
+    else:
+        prefix = ("* " if ascii_only else "⚡ ")
     parts = [f"{prefix}{title}", f"{category}"]
     if deadline:
         parts.append(f"deadline {deadline}")

@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import sys
 from datetime import datetime, timezone
 from typing import Any
 
@@ -34,6 +35,14 @@ def get_logger() -> logging.Logger:
 
     handler.setFormatter(JsonLineFormatter())
     logger.addHandler(handler)
+
+    # In GitHub Actions, also log to stdout so run logs show pipeline counts/errors.
+    if os.getenv("GITHUB_ACTIONS", "").lower() == "true":
+        sh = logging.StreamHandler(stream=sys.stdout)
+        sh.setLevel(logging.INFO)
+        sh.setFormatter(JsonLineFormatter())
+        logger.addHandler(sh)
+
     _LOGGER = logger
     return logger
 

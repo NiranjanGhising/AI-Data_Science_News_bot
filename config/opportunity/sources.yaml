@@ -12,6 +12,22 @@ sources:
     rateLimitSeconds: 2
     tags: [google, open_source, program]
 
+  - id: google-developers-blog
+    name: Google Developers Blog
+    url: https://developers.googleblog.com/feeds/posts/default?alt=rss
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [google, developers, program]
+
+  - id: google-cloud-blog
+    name: Google Cloud Blog
+    url: https://cloud.google.com/blog/rss/
+    parser: rss
+    enabled: true
+    rateLimitSeconds: 2
+    tags: [google, cloud, challenge, certification, training]
+
   - id: gsoc-updates
     name: Google Summer of Code (Updates)
     url: https://summerofcode.withgoogle.com/updates/feed/
