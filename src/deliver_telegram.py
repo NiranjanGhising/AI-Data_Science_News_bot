@@ -2,6 +2,47 @@ import os
 import requests
 
 
+TELEGRAM_MAX_MESSAGE_LEN = 4096
+
+
+def _split_telegram_text(text: str, max_len: int = TELEGRAM_MAX_MESSAGE_LEN) -> list[str]:
+    text = "" if text is None else str(text)
+    if len(text) <= max_len:
+        return [text]
+
+    # Prefer splitting on line boundaries.
+    lines = text.split("\n")
+    chunks: list[str] = []
+    buf = ""
+
+    def flush() -> None:
+        nonlocal buf
+        if buf:
+            chunks.append(buf)
+            buf = ""
+
+    for line in lines:
+        candidate = line if not buf else (buf + "\n" + line)
+        if len(candidate) <= max_len:
+            buf = candidate
+            continue
+
+        # Flush current buffer first.
+        flush()
+
+        # If the single line is still too long, hard-split it.
+        if len(line) > max_len:
+            start = 0
+            while start < len(line):
+                chunks.append(line[start : start + max_len])
+                start += max_len
+        else:
+            buf = line
+
+    flush()
+    return [c for c in chunks if c.strip()]
+
+
 def _escape_md(text: str) -> str:
     # Telegram Markdown (legacy) is finicky; do a small, safe subset.
     # We avoid fancy formatting and mainly escape '*' and '_' which are common.
@@ -29,33 +70,42 @@ def send_message_telegram(text: str, *, parse_mode: str = "Markdown") -> None:
     if os.getenv("TG_DISABLE_MARKDOWN") == "1":
         parse_mode = ""
 
-    payload = {"chat_id": chat_id, "text": text}
-    if parse_mode:
-        payload["parse_mode"] = parse_mode
+    # Telegram hard limit is 4096 chars per message.
+    parts = _split_telegram_text(text, TELEGRAM_MAX_MESSAGE_LEN)
 
-    resp = requests.post(
-        f"https://api.telegram.org/bot{token}/sendMessage",
-        data=payload,
-        timeout=30,
-    )
+    last_error: RuntimeError | None = None
+    for part in parts:
+        payload = {"chat_id": chat_id, "text": part}
+        if parse_mode:
+            payload["parse_mode"] = parse_mode
 
-    # Telegram Markdown can fail on edge-case titles/URLs. Auto-fallback to plain text.
-    if (not resp.ok) and parse_mode:
-        body0 = (resp.text or "").lower()
-        if resp.status_code == 400 and ("can't parse" in body0 or "cant parse" in body0 or "parse entities" in body0):
-            payload2 = {"chat_id": chat_id, "text": text}
-            resp2 = requests.post(
-                f"https://api.telegram.org/bot{token}/sendMessage",
-                data=payload2,
-                timeout=30,
-            )
-            resp = resp2
+        resp = requests.post(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data=payload,
+            timeout=30,
+        )
 
-    if not resp.ok:
-        body = (resp.text or "").strip()
-        if len(body) > 1200:
-            body = body[:1200] + "..."
-        raise RuntimeError(f"Telegram sendMessage failed: HTTP {resp.status_code}: {body}")
+        # Telegram Markdown can fail on edge-case titles/URLs. Auto-fallback to plain text.
+        if (not resp.ok) and parse_mode:
+            body0 = (resp.text or "").lower()
+            if resp.status_code == 400 and ("can't parse" in body0 or "cant parse" in body0 or "parse entities" in body0):
+                payload2 = {"chat_id": chat_id, "text": part}
+                resp2 = requests.post(
+                    f"https://api.telegram.org/bot{token}/sendMessage",
+                    data=payload2,
+                    timeout=30,
+                )
+                resp = resp2
+
+        if not resp.ok:
+            body = (resp.text or "").strip()
+            if len(body) > 1200:
+                body = body[:1200] + "..."
+            last_error = RuntimeError(f"Telegram sendMessage failed: HTTP {resp.status_code}: {body}")
+            break
+
+    if last_error is not None:
+        raise last_error
 
 def send_digest_telegram(items, bullets=6):
     top = items[:bullets]
