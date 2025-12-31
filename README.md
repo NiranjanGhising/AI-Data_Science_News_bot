@@ -9,7 +9,7 @@ Get **daily digests** and **priority alerts** in your Telegram group about the l
 
 ---
 
-## âœ¨ Features
+## Features
 - **Telegram-only delivery**: short bullets + link + key findings.
 - **Link summaries** (new): each AI item can include a 1â€“2 sentence summary from the link + a short â€œWhy readâ€ note.
 - **High-signal sources**:
@@ -22,7 +22,7 @@ Get **daily digests** and **priority alerts** in your Telegram group about the l
 
 ---
 
-## ðŸš€ Quick Start (for anyone forking the repo)
+## Quick Start (for anyone forking the repo)
 
 ### 1) Create a Telegram Bot & Group
 1. In Telegram, talk to **@BotFather** â†’ `/newbot` â†’ follow prompts â†’ copy your **bot token**.
@@ -54,13 +54,13 @@ Example: `-1001234567789` (keep the minus sign).
 
 ---
 
-## ðŸ•’ Scheduling & Quiet Hours
+##  Scheduling & Quiet Hours
 - **Daily digest**: 08:00 NPT (Asia/Kathmandu) â†’ `cron: "15 2 * * *"` (UTC).
 - **Priority alerts**: hourly, skips quiet hours (22:00â€“07:00 NPT).
 
 ---
 
-## ðŸ”§ Customization
+## Customization
 - Add/remove sources: `src/ingest_feeds.py`.
 - Tune ranking keywords: `scripts/run_daily.py`.
 - Change bullet count: `src/deliver_telegram.py`.
@@ -79,19 +79,19 @@ Notes:
 
 ---
 
-## â“ FAQ
+## FAQ
 
 **Q: Does this cost anything?**  
 Noâ€”Telegram and GitHub Actions are free for public repos.
 
-**Q: My bot isnâ€™t posting.**  
+**My bot isnâ€™t posting.**  
 - Check bot is in the group.
 - Confirm `TG_CHAT_ID` via `getUpdates`.
 - Trigger **Daily Digest** manually.
 
 ---
 
-## ðŸ‘ Contributing
+## Contributing
 Pull requests welcome! Ideas:
 - Add more sources (Hugging Face, NVIDIA, conference feeds).
 - Improve ranking heuristics.
@@ -99,5 +99,5 @@ Pull requests welcome! Ideas:
 
 ---
 
-## ðŸ“„ License
+## License
 Released under the **MIT License** (see `LICENSE`).
