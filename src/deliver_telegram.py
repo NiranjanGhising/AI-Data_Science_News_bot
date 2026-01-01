@@ -1,6 +1,9 @@
 import os
 import requests
 
+# Telegram message character limit
+TELEGRAM_MAX_LENGTH = 4096
+
 
 def _escape_md(text: str) -> str:
     # Telegram Markdown (legacy) is finicky; do a small, safe subset.
@@ -29,20 +32,66 @@ def send_message_telegram(text: str, *, parse_mode: str = "Markdown") -> None:
     if os.getenv("TG_DISABLE_MARKDOWN") == "1":
         parse_mode = ""
 
-    payload = {"chat_id": chat_id, "text": text}
-    if parse_mode:
-        payload["parse_mode"] = parse_mode
+    # Split long messages to avoid Telegram's 4096 char limit
+    chunks = _split_message(text, TELEGRAM_MAX_LENGTH)
+    
+    for chunk in chunks:
+        payload = {"chat_id": chat_id, "text": chunk}
+        if parse_mode:
+            payload["parse_mode"] = parse_mode
 
-    resp = requests.post(
-        f"https://api.telegram.org/bot{token}/sendMessage",
-        data=payload,
-        timeout=30,
-    )
-    if not resp.ok:
-        body = (resp.text or "").strip()
-        if len(body) > 1200:
-            body = body[:1200] + "..."
-        raise RuntimeError(f"Telegram sendMessage failed: HTTP {resp.status_code}: {body}")
+        resp = requests.post(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data=payload,
+            timeout=30,
+        )
+        if not resp.ok:
+            body = (resp.text or "").strip()
+            if len(body) > 1200:
+                body = body[:1200] + "..."
+            raise RuntimeError(f"Telegram sendMessage failed: HTTP {resp.status_code}: {body}")
+
+
+def _split_message(text: str, max_length: int) -> list[str]:
+    """Split a message into chunks that fit within Telegram's character limit.
+    
+    Tries to split at paragraph boundaries (double newlines), then single newlines,
+    to keep related content together.
+    """
+    if len(text) <= max_length:
+        return [text]
+    
+    chunks = []
+    remaining = text
+    
+    while remaining:
+        if len(remaining) <= max_length:
+            chunks.append(remaining)
+            break
+        
+        # Find the best split point within the limit
+        split_at = max_length
+        
+        # Try to split at a double newline (paragraph break)
+        para_break = remaining.rfind("\n\n", 0, max_length)
+        if para_break > max_length // 2:  # Only use if it's not too early
+            split_at = para_break + 2  # Include the newlines in this chunk
+        else:
+            # Try to split at a single newline
+            line_break = remaining.rfind("\n", 0, max_length)
+            if line_break > max_length // 2:
+                split_at = line_break + 1
+            else:
+                # Last resort: split at a space
+                space = remaining.rfind(" ", 0, max_length)
+                if space > max_length // 2:
+                    split_at = space + 1
+                # If no good split point, just hard cut at max_length
+        
+        chunks.append(remaining[:split_at].rstrip())
+        remaining = remaining[split_at:].lstrip()
+    
+    return chunks
 
 def send_digest_telegram(items, bullets=6):
     top = items[:bullets]
